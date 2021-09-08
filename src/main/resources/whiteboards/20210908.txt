@@ -1,0 +1,38 @@
+IntelliJ van Jetbrains
+	IDE = Integrated Development Environment
+
+Eclipse --> open source gratis
+	WSAD -> $$$ van IBM
+
+Netbeans --> Oracle
+
+SDK = Software Development Kit = compiler, libaries, ...
+JDK = Java Development Kit = javac.exe = compiler, java.exe = JVM = runtime = JRE
+JRE = Java Runtime Environment = java.exe = JVM = runtime los
+
+.exe = executable, door windows uitvoerbaar programma, in /bin
+
+API = Application Programming Interface
+
+Release schedule:
+	Tot java 10: feature based
+	Daarna: time based, elke 6 maanden
+		wat af is erin: permanent feature
+		experimental feature: nieuwe features: feedback?
+
+	LTS = long term support release, minimaal 3 jaar support (=update, security, ..)
+	Anders: feature release
+	LTS 8, 11, 17
+
+GIT: version control system (VCS)
+	1. versies beheren van files en die bewaren
+	2. code delen met anderen, die ook dingen kunnen toevoegen die jij kan binnenhalen
+
+	Repository (repo) = plek waar git alle files en versies opslaat
+	.gitignore 		  = wat moet git negeren, niet opslaan in de repo? (via www.gitignore.io)
+
+	git init 	= nieuwe repo in huidige directory = .git folder
+	git status  = wat kan ik gaan toevoegen (add) of bijdragen (commit)?
+	git add .	= staging, klaarzetten voor de volgende commit (evt. meerdere keren)
+	git commit -m "My first commit" = nieuwe bijdrage, nieuwe versies van files
+		new, modified, deleted
