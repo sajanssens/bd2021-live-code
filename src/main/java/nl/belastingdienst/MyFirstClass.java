@@ -2,6 +2,7 @@ package nl.belastingdienst; // package name
 
 // import java.lang.*; // impliciet aanwezig.
 
+import nl.belastingdienst.ietsanders.Author;
 import nl.belastingdienst.ietsanders.Book;
 
 public class MyFirstClass { // class name
@@ -14,7 +15,12 @@ public class MyFirstClass { // class name
     public static void main(String[] args) { // de main methode
         String message = "String hello world!";
         System.out.println(message);
-        Book b2;
+
+        Book b = new Book();
+        b.klapDicht();
+
+        Author a;
+
         System.out.println("Nog iets...");
 
         // Java release
