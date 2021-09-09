@@ -11,4 +11,10 @@ public class Author {
         }
     }
 
+    public void doeIetsAnders(){
+        //...
+        //...
+        //...
+    }
+
 }

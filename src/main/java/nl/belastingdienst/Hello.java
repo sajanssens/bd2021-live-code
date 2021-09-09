@@ -13,9 +13,7 @@ public class Hello {
     private final double PI = 3.14;
 
     public static int verdubbel(int getal) {
-        int g = 2;
-        System.out.println(g);
-        return getal * g;
+        return getal * 2;
     }
 
     /**
