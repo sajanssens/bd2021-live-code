@@ -1,14 +1,14 @@
-package nl.belastingdienst; // package name
+package nl.belastingdienst.h2; // package name
 
 // import java.lang.*; // impliciet aanwezig.
 
-import nl.belastingdienst.ietsanders.Author;
-import nl.belastingdienst.ietsanders.Book;
+import nl.belastingdienst.h2.ietsanders.Author;
+import nl.belastingdienst.h2.ietsanders.Book;
 
 public class MyFirstClass { // class name
 
     // Fully qualified class name:
-    // nl.belastingdienst.MyFirstClass
+    // nl.belastingdienst.h2.MyFirstClass
 
     // commentaar  = single line comment
 

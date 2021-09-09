@@ -1,4 +1,4 @@
-package nl.belastingdienst.ietsanders;
+package nl.belastingdienst.h2.ietsanders;
 
 import org.junit.Test;
 
@@ -10,8 +10,8 @@ public class AuthorTest {
     public void whenDoeIetsThen42() {
         // given: aanmaken van testdata
         int i = 0;
-        Author tolkien = new Author(); // Author is de class
-        Author reve = new Author();    // tolkien en reve zijn objecten = instanties van die class
+        nl.belastingdienst.h2.ietsanders.Author tolkien = new nl.belastingdienst.h2.ietsanders.Author(); // Author is de class
+        nl.belastingdienst.h2.ietsanders.Author reve = new nl.belastingdienst.h2.ietsanders.Author();    // tolkien en reve zijn objecten = instanties van die class
 
         // when: roep subject under test aan, hier iets van Author
         int resultaatTolkien = tolkien.doeIets("tolkien");

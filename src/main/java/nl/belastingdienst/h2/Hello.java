@@ -1,4 +1,4 @@
-package nl.belastingdienst;
+package nl.belastingdienst.h2;
 
 import static java.lang.Math.cos;
 

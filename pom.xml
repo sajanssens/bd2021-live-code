@@ -12,9 +12,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>  <!-- in welke versie schrijf ik mijn sources en compileert het? -->
+        <maven.compiler.source>11</maven.compiler.source> <!-- in welke versie schrijf ik mijn sources en compileert het? -->
         <maven.compiler.target>11</maven.compiler.target> <!-- op welke versie draait mijn applicatie? -->
-        <!--<maven.compiler.release>11</maven.compiler.release> &lt;!&ndash; == source EN API versies EN target  &ndash;&gt;-->
+        <!--<maven.compiler.release>11</maven.compiler.release>--> <!-- == source EN API versies EN target  -->
     </properties>
 
     <!-- dependency management -->

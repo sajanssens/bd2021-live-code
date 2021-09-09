@@ -1,4 +1,4 @@
-package nl.belastingdienst.ietsanders;
+package nl.belastingdienst.h2.ietsanders;
 
 public class Book { // Altijd met één hoofdletter
 

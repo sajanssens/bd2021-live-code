@@ -1,0 +1,36 @@
+Strong typing: alles heeft een type
+Static: als iets een type heeft kan dat type niet meer gewijzigd worden
+
+transistor kan aan of uit = 0 of 1
+digitaal = met nummers
+
+0/1 = bit
+8 bits = by eight = byte
+4 bits = nibble
+
+byte = 1 byte
+int  = 4 bytes = 4*8 = 32 bits.
+
+0-9
+0-99
+
+binair:
+000
+001
+010
+011 2 bits = 4
+100
+101
+110
+111 3 bits = 8 (2x zo groot)
+    4 bits = 16
+    8 bits = 2^8 = 256: loopt van -128...127 == byte
+
+Literals:
+1 = int
+1l = long
+1.0 = double
+1.0f = float
+true of false = boolean
+"text" = String
+'c' = char
