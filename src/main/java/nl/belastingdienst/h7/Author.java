@@ -34,6 +34,12 @@ public class Author {
     }
 
     // Methods: functies, BEHAVIOUR
+
+    /**
+     *
+     * @param name
+     * @return
+     */
     public int doeIets(String name) {
         String verbodennaam; // lokale geen default waarde
         if (name.equals("tolkien")) {
@@ -44,6 +50,8 @@ public class Author {
     }
 
     public void doeIetsAnders() {
+        System.out.println("doeIetsAnders");
+        System.out.println(this);
         //...
         //...
         //...

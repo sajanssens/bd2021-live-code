@@ -1,6 +1,5 @@
 package nl.belastingdienst.h2;
 
-import nl.belastingdienst.h2.Hello;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
