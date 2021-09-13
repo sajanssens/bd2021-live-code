@@ -21,6 +21,7 @@ public class App {
 
         System.out.println(Author.max);
         System.out.println(Author.geefDeMaxLeeftijd());
+        System.out.println(Author.getAllGenres());
 
         a.doeIetsAnders();
         b.doeIetsAnders();

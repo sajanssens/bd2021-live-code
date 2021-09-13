@@ -2,23 +2,40 @@ package nl.belastingdienst.h7;
 
 import nl.belastingdienst.h2.ietsanders.Book;
 
-public class Author {
+import java.util.List;
 
-    // fields: data STATE
-    private String name /*= null*/;
+public class Author { // immutable class/objects als alle fields final zijn
+
+    // fields: data STATE, behoren bij objecten (instanties van deze class)
+    // aka: instance variables
+    private final String name /*= null*/; // immutable field
     private int age /*= 0*/;
     public String genre /*= null*/;
     public Book debut /*= null*/;
     public boolean isLief /*= false*/;
     public char rating;
+
+    // static fields, behoren bij class:
+    private static final int defaultAge = -1; // final is read only
     public static final int max = 100;
 
     public Author() {
+        this(true); // MOET op eerste regel van deze constructor staan!
+        // = constructor chaining
 
+        // name = "UNKNOWN";
+        // age = -1;
+        // isLief = true;
+
+        // Author init = new Author("UNKNOWN", -1, true); // FOUT!
     }
 
     public Author(boolean isLief) {
-        this.isLief = isLief;
+        this("UNKNOWN", defaultAge, isLief);
+    }
+
+    public Author(String eenName) {
+        this(eenName, defaultAge, true);
     }
 
     // DRY = Dont Repeat Yourself
@@ -29,14 +46,10 @@ public class Author {
         isLief = eenIsLief;
     }
 
-    public static int geefDeMaxLeeftijd(){
-        return max;
-    }
-
     // Methods: functies, BEHAVIOUR
+    // aka instance methods
 
     /**
-     *
      * @param name
      * @return
      */
@@ -71,11 +84,9 @@ public class Author {
         if (eenNieuweNaam.startsWith("1")) {
             System.err.println("Naam mag niet met 1 beginnen...");
         } else {
-            name = eenNieuweNaam;
+            // name = eenNieuweNaam;
         }
     }
-
-
 
     public void setAge(int age) {
 
@@ -91,5 +102,17 @@ public class Author {
                 ", genre='" + genre + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    // static methods, a.k.a. class methods:
+    // je kunt niet bij instance variables!
+
+    public static int geefDeMaxLeeftijd() {
+        return max;
+    }
+
+    public static List<Genre> getAllGenres() {
+        // System.out.println(name);
+        return List.of(Genre.HORROR, Genre.THRILLER, Genre.FANTASY);
     }
 }
