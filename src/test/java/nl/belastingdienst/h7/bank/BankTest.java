@@ -3,6 +3,7 @@ package nl.belastingdienst.h7.bank;
 import org.junit.Assert;
 import org.junit.Test;
 
+// Integratietest want meerdere klasses betrokken.
 public class BankTest {
 
     @Test
