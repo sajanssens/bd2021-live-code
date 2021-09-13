@@ -24,5 +24,9 @@ public class BankTest {
 
         Assert.assertEquals(100, rekeningVanBram.getBalance(), 0.1);
         Assert.assertEquals(300, rekeningVanMatthijs.getBalance(), 0.1);
+
+        double totalAmount = bank.getTotalAmount();
+        Assert.assertEquals(400, totalAmount, 0.1);
     }
+
 }
