@@ -12,8 +12,10 @@ public class BankTest {
         Account rekeningVanBram = new Account();
         Account rekeningVanMatthijs = new Account();
 
-        bank.setAccount1(rekeningVanBram);
-        bank.setAccount2(rekeningVanMatthijs);
+        // bank.setAccount1(rekeningVanBram);
+        // bank.setAccount2(rekeningVanMatthijs);
+        bank.addAccount(rekeningVanBram);
+        bank.addAccount(rekeningVanMatthijs);
 
         rekeningVanBram.deposit(200);
         rekeningVanMatthijs.deposit(200);

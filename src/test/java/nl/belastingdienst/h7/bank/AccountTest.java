@@ -15,7 +15,5 @@ public class AccountTest {
         // dit wordt nooit meer uitgevoerd
         // dus geen asserts mogelijk
         // daarom expect in de @Test
-
-
     }
 }
