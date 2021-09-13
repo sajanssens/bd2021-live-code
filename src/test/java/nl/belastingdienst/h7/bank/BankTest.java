@@ -19,8 +19,7 @@ public class BankTest {
 
         bank.transfer(rekeningVanBram, rekeningVanMatthijs, 100);
 
-        Assert.assertEquals(100, rekeningVanBram.getBalance());
-        Assert.assertEquals(300, rekeningVanMatthijs.getBalance());
-
+        Assert.assertEquals(100, rekeningVanBram.getBalance(), 0.1);
+        Assert.assertEquals(300, rekeningVanMatthijs.getBalance(), 0.1);
     }
 }
