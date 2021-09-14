@@ -48,10 +48,10 @@ public class StatementOrExpression {
         }
 
         // als expression (java >= 14)
-        j = switch (i) {
-            case 1, 2, 3 -> true;
-            default -> false;
-        };
+        // j = switch (i) {
+        //     case 1, 2, 3 -> true;
+        //     default -> false;
+        // };
 
         // for statement (als aantal slagen bekend is)
         for (int a = 0; a < 10; a++) { // spreek uit: "voor a van 0 tot 10 met stap 1, doe":

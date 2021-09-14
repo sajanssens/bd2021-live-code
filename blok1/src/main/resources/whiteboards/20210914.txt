@@ -1,0 +1,20 @@
+Extra oefening loops:
+
+Voor alle getallen tussen 0 en 100:
+	- Als een getal deelbaar is door 3 of 5, vermenigvuldig dan dit getal met het aantal keer dat je zo'n getal al gevonden hebt.
+	- Reken de som uit van al die producten.
+
+Bijvoorbeeld (voor 0..10):
+    0	-> -
+    1	-> -
+    2	-> -
+    3	-> ja, 1e hit, dus 3x1 =  3
+    4	-> -
+    5	-> ja, 2e hit, dus 5x2 = 10
+    6	-> ja, 3e hit, dus 6x3 = 18
+    7	-> -
+    8	-> -
+    9	-> ja, 4e hit, dus 9x4 = 36
+    10	-> -
+    -------------------------------- +
+                                 67
