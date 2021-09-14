@@ -11,10 +11,20 @@
     <artifactId>bd2021-live-code</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>blok1</module>
+        <module>nogeenmodule</module>
+    </modules>
+
     <properties>
-        <maven.compiler.source>11</maven.compiler.source> <!-- in welke versie schrijf ik mijn sources en compileert het? -->
-        <maven.compiler.target>11</maven.compiler.target> <!-- op welke versie draait mijn applicatie? -->
-        <!--<maven.compiler.release>11</maven.compiler.release>--> <!-- == source EN API versies EN target  -->
+        <!-- in welke versie schrijf ik mijn sources en compileert het? -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <!-- op welke versie draait mijn applicatie? -->
+        <maven.compiler.target>17</maven.compiler.target>
+        <!-- == source EN API versies EN target  -->
+        <!-- <maven.compiler.release>11</maven.compiler.release> -->
     </properties>
 
     <!-- dependency management -->

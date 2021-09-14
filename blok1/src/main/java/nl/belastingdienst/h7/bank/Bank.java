@@ -1,26 +1,28 @@
 package nl.belastingdienst.h7.bank;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Bank {
 
+    // precies twee accounts:
     // private Account account1;
     // private Account account2;
 
-    // private Account[] accounts;
-    private ArrayList<Account> accounts = new ArrayList<>();
+    // many accounts:
+    // private Account[] accounts = new Account[10];    // optie 1: array
+    private List<Account> accounts = new ArrayList<>(); // optie 2: nieuwe lege lijst
 
-    public boolean transfer(Account from, Account to, double amount) {
+    public void transfer(Account from, Account to, double amount) {
         from.withdraw(amount);
         to.deposit(amount);
-        return true;
     }
 
     public double getTotalAmount() {
         // return account1.getBalance() + account2.getBalance();
         double total = 0;
 
-        for (Account a : accounts) {
+        for (Account a : accounts) { // for each
             double balance = a.getBalance();
             total += balance;
         }

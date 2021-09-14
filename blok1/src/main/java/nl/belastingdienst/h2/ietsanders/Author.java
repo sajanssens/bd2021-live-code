@@ -1,6 +1,6 @@
 package nl.belastingdienst.h2.ietsanders;
 
-public class Author {
+public class Author implements AutoCloseable{
 
     public String name;
     public String genre;
@@ -29,5 +29,10 @@ public class Author {
                 ", genre='" + genre + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public void close()  {
+        System.out.println("Ik ga sluiten...!");
     }
 }
