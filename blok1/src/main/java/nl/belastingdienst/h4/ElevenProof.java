@@ -30,7 +30,10 @@ public class ElevenProof {
             j++;
         }
         System.out.println(som);
-        System.out.println(som % 11 == 0);
+
+        int restNaDelingDoorElf = som % 11;
+        boolean isOk = restNaDelingDoorElf == 0;
+        System.out.println(isOk);
 
         // ...
 

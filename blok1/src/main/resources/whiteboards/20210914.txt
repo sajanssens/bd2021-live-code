@@ -2,7 +2,7 @@ Extra oefening loops:
 
 Voor alle getallen tussen 0 en 100:
 	- Als een getal deelbaar is door 3 of 5, vermenigvuldig dan dit getal met het aantal keer dat je zo'n getal al gevonden hebt.
-	- Reken de som uit van al die producten.
+	- Reken de som uit van al die producten. Dit zou 74160 moeten zijn.
 
 Bijvoorbeeld (voor 0..10):
     0	-> -
