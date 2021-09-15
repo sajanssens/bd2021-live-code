@@ -1,23 +1,12 @@
 package nl.belastingdienst.h7.bank;
 
-import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 // Unit test: alle dependencies afsnijden en vervangen met mocks (dummies, met dummiegedrag)
 public class BankTest {
-
-    private Bank target;
-
-    @Before
-    public void setUp() throws Exception {
-        target = new Bank();
-    }
 
     @Test
     public void getTotalAmountTest() {
@@ -37,7 +26,8 @@ public class BankTest {
 
         // then
         assertEquals(300d, totalAmount, 0.1d);
-        verify(account1, times(1)).getBalance();
+
+        verify(account1, times(1)).getBalance(); // test dat van account1 1x de getBalance is aangeroepen
         verify(account2, times(1)).getBalance();
     }
 }
