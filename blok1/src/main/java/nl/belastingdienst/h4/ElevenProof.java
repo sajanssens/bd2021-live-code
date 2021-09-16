@@ -9,41 +9,24 @@ public class ElevenProof {
         // var rekeningnummer = "736160221";
         var rekeningnummer = new Scanner(System.in).nextLine();
 
-        var i = 9;       // A = startwaarde, gaat van 9 t/m 1
-        var j = 0;       //                  gaat van 0 t/m 8
+        var i = 0;
+        var factor = 9;
         int som = 0;
-        while (i >= 1) { // B = eindconditie
-            // System.out.println(i); // BODY
+        while (factor >= 1) {
+            char karakterUitRekeningnummer = rekeningnummer.charAt(i);
+            int nummerAlsInt = Character.getNumericValue(karakterUitRekeningnummer);
 
-            char nummer = rekeningnummer.charAt(j); // karakter uit rekeningnummer op plek j
-            // System.out.println(nummer);
-
-            // char een = '1'; // = nummer 60 ofzo.
-            // String eenS = "1";
-
-            // String nummerAlsString = nummer + "";
-            // int nummerAlsInt = Integer.parseInt(nummerAlsString);
-
-            int nummerAlsInt = Character.getNumericValue(nummer);
-
-            int product = nummerAlsInt * i;
+            int product = nummerAlsInt * factor;
             som = som + product;
 
-            // System.out.println(product);
-            i--;         // C = stapgrootte
-            j++;
+            factor--;
+            i++;
         }
         System.out.println(som);
 
         int restNaDelingDoorElf = som % 11;
         boolean isOk = restNaDelingDoorElf == 0;
         System.out.println(isOk);
-
-        // ...
-
-        // for(startwaarde ; eindconditie ; stapgrootte ){
-        //      doe iets zolang eindconditie niet bereikt is.
-        // }
     }
 
 }
