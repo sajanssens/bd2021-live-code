@@ -10,7 +10,6 @@ public class ElevenProof {
 
     private void start() {
         System.out.println("Geef rekeningnummer: ");
-        // var rekeningnummer = "736160221";
         var rekeningnummer = new Scanner(System.in).nextLine();
 
         int som = bepaalSom(rekeningnummer);
