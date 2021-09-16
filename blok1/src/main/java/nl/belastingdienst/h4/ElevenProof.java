@@ -1,9 +1,13 @@
 package nl.belastingdienst.h4;
 
+import java.util.Scanner;
+
 public class ElevenProof {
 
     public static void main(String[] args) {
-        var rekeningnummer = "736160221";
+        System.out.println("Geef rekeningnummer: ");
+        // var rekeningnummer = "736160221";
+        var rekeningnummer = new Scanner(System.in).nextLine();
 
         var i = 9;       // A = startwaarde, gaat van 9 t/m 1
         var j = 0;       //                  gaat van 0 t/m 8
