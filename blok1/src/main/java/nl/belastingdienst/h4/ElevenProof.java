@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class ElevenProof {
 
+    private Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         new ElevenProof().start();
     }
@@ -20,7 +22,7 @@ public class ElevenProof {
 
     String getRekeningnummer() {
         System.out.println("Geef rekeningnummer: ");
-        return new Scanner(System.in).nextLine();
+        return scanner.nextLine();
     }
 
     int bepaalSom(String rekeningnummer) {
@@ -41,9 +43,10 @@ public class ElevenProof {
     }
 
     boolean isElevenProof(int som) {
-        int restNaDelingDoorElf = som % 11;
-        boolean isOk = restNaDelingDoorElf == 0;
-        return isOk;
+        return som % 11 == 0;
     }
 
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
 }
