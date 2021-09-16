@@ -12,14 +12,14 @@ import static org.mockito.Mockito.when;
 public class ElevenProofTest {
 
     private ElevenProof target;
-    private final Scanner mockScanner = mock(Scanner.class);
+    private final ScannerTussenpersoon mockScannerTussenpersoon = mock(ScannerTussenpersoon.class);
 
     @Before
     public void setUp() {
         this.target = new ElevenProof();
-        this.target.setScanner(mockScanner);
+        this.target.setScannerTussenpersoon(mockScannerTussenpersoon);
 
-        when(mockScanner.nextLine()).thenReturn("123456789");
+        when(mockScannerTussenpersoon.nextLine()).thenReturn("123456789");
     }
 
     @Test
@@ -46,6 +46,7 @@ public class ElevenProofTest {
 
     @Test
     public void getRekeningnummer() {
+        when(mockScannerTussenpersoon.nextLine()).thenReturn("123456789");
         String rekeningnummer = target.getRekeningnummer(); // won't work, user input required...
         assertEquals("123456789", rekeningnummer);
     }

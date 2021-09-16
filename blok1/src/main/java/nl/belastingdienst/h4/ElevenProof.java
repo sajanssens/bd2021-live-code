@@ -1,10 +1,8 @@
 package nl.belastingdienst.h4;
 
-import java.util.Scanner;
-
 public class ElevenProof {
 
-    private Scanner scanner = new Scanner(System.in);
+    private ScannerTussenpersoon scannerTussenpersoon = new ScannerTussenpersoon();
 
     public static void main(String[] args) {
         new ElevenProof().start();
@@ -22,7 +20,7 @@ public class ElevenProof {
 
     String getRekeningnummer() {
         System.out.println("Geef rekeningnummer: ");
-        return scanner.nextLine();
+        return scannerTussenpersoon.nextLine();
     }
 
     int bepaalSom(String rekeningnummer) {
@@ -46,7 +44,7 @@ public class ElevenProof {
         return som % 11 == 0;
     }
 
-    public void setScanner(Scanner scanner) {
-        this.scanner = scanner;
+    public void setScannerTussenpersoon(ScannerTussenpersoon s) {
+        this.scannerTussenpersoon = s;
     }
 }
