@@ -9,14 +9,18 @@ public class ElevenProof {
     }
 
     private void start() {
-        System.out.println("Geef rekeningnummer: ");
-        var rekeningnummer = new Scanner(System.in).nextLine();
+        String rekeningnummer = getRekeningnummer();
 
         int som = bepaalSom(rekeningnummer);
         System.out.println(som);
 
         boolean isOk = isElevenProof(som);
         System.out.println(isOk);
+    }
+
+    String getRekeningnummer() {
+        System.out.println("Geef rekeningnummer: ");
+        return new Scanner(System.in).nextLine();
     }
 
     int bepaalSom(String rekeningnummer) {

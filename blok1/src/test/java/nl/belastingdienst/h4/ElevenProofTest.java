@@ -35,4 +35,9 @@ public class ElevenProofTest {
         assertTrue(target.isElevenProof(165));
         assertFalse(target.isElevenProof(166));
     }
+
+    @Test
+    public void getRekeningnummer() {
+        String rekeningnummer = target.getRekeningnummer(); // won't work, user input required...
+    }
 }
