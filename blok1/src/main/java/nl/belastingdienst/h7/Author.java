@@ -4,7 +4,7 @@ import nl.belastingdienst.h2.ietsanders.Book;
 
 import java.util.List;
 
-public class Author { // immutable class/objects als alle fields final zijn
+public class Author /* extends Object staat er altijd impliciet */ { // immutable class/objects als alle fields final zijn
 
     // fields: data STATE, behoren bij objecten (instanties van deze class)
     // aka: instance variables
@@ -19,6 +19,8 @@ public class Author { // immutable class/objects als alle fields final zijn
     // static fields, behoren bij class:
     private static final int defaultAge = -1; // final is read only
     public static final int max = 100;
+
+    // constructors: --------------------------------------------------
 
     public Author() {
         this(true); // MOET op eerste regel van deze constructor staan!
@@ -48,7 +50,8 @@ public class Author { // immutable class/objects als alle fields final zijn
     }
 
     // Methods: functies, BEHAVIOUR
-    // aka instance methods
+
+    // instance methods: --------------------------------------------------
 
     /**
      * @param name
@@ -101,16 +104,12 @@ public class Author { // immutable class/objects als alle fields final zijn
         }
     }
 
-    @Override
-    public String toString() {
-        return "Author{" +
-                "name='" + name + '\'' +
-                ", genre='" + genre + '\'' +
-                ", age=" + age +
-                '}';
+    public int geefDubbeleVanLeeftijd() {
+        return this.age * 2;
     }
 
-    // static methods, a.k.a. class methods:
+    // static methods ------------------------------------------------------
+    // a.k.a. class methods:
     // je kunt niet bij instance variables!
 
     public static int geefDeMaxLeeftijd() {
@@ -122,10 +121,6 @@ public class Author { // immutable class/objects als alle fields final zijn
         return List.of(Genre.HORROR, Genre.THRILLER, Genre.FANTASY);
     }
 
-    public int geefDubbeleVanLeeftijd() {
-        return this.age * 2;
-    }
-
     public static int geefDubbeleVanLeeftijd(Author eenAuthor) {
         return eenAuthor.age * 2;
     }
@@ -133,4 +128,53 @@ public class Author { // immutable class/objects als alle fields final zijn
     public static int geefDubbeleVanLeeftijd(int leeftijd) {
         return leeftijd * 2;
     }
+
+    // overrides ------------------------------------------------------
+
+    @Override
+    public boolean equals(Object eenAnderObject) {
+        // is eenAndereAuthor wel van het type Author?
+        if (!(eenAnderObject instanceof /*is van het type*/ Author)) {
+            // Authors met peren vergelijk
+            return false;
+        }
+        // hier is eenAndereAuthor dus echt een Author
+
+        // soort narrowing voor reference types, moet expliciet via cast.
+        Author deAndereAuthor = (Author) eenAnderObject;
+
+        // soort widening voor reference types, kan impliciet
+        Object o = deAndereAuthor; // Author is een Object, dus dat past
+        // String o = deAndereAuthor; // Author is geen String, dus dat past niet
+
+        if (this.name.equals(deAndereAuthor.name) && this.age == deAndereAuthor.age) {
+            return true;
+        }
+
+        // alle andere gevallen kom je kennelijk hier uit:
+        return false;
+    }
+
+    @Override
+    public int hashCode() { // uniek kenmerk van een author, die de equals "volgt", dus dezelfde velden als equals meeneemt om een hashcode van te maken
+        return this.name.hashCode() + this.age + (isLief ? 1 : 0);
+    }
+
+    // Equals bepaalt wanneer objecten van deze class gelijk zijn
+    // Hashcode bepaalt een unieke code voor een object
+    // Als je de ene overridet, moet je de andere ook overriden en dit moet op basis van dezelfde fields gebeuren!
+    // De hashcode moet zo onderscheidend mogelijk zijn om te profiteren van snel zoeken in de hash tabel.
+    // De hashcode mag wel minder onderscheidend zijn dan equals, maar niet meer onderscheidend.
+    // Dezelfde hashcode voor verschillende objecten worden onder die hashcode in de tabel beide opgeslagen.
+    // Het zoeken hiervan duurt alleen wel langer.
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "name='" + name + '\'' +
+                ", genre='" + genre + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
 }
