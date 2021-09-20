@@ -160,13 +160,43 @@ public class Author /* extends Object staat er altijd impliciet */ { // immutabl
         return this.name.hashCode() + this.age + (isLief ? 1 : 0);
     }
 
+    // Samengevat:
     // Equals bepaalt wanneer objecten van deze class gelijk zijn
     // Hashcode bepaalt een unieke code voor een object
     // Als je de ene overridet, moet je de andere ook overriden en dit moet op basis van dezelfde fields gebeuren!
+
+    // Uitleg:
+    // HashSet voegt toe als hashcode van object er nog niet inzit EN onder die hashcode de objecten NIET equal zijn
     // De hashcode moet zo onderscheidend mogelijk zijn om te profiteren van snel zoeken in de hash tabel.
     // De hashcode mag wel minder onderscheidend zijn dan equals, maar niet meer onderscheidend.
     // Dezelfde hashcode voor verschillende objecten worden onder die hashcode in de tabel beide opgeslagen.
     // Het zoeken hiervan duurt alleen wel langer.
+
+    // Met de huidige implementatie zit de hashtabel er zo uit:
+    // |--------------------------------------|
+    // | hashcode     | objecten met die code |
+    // | -1242499551  | a                     |
+    // | -1242499550  | b                     |
+    // | 4546533      | c                     |
+    // | -68623796    | d                     |
+    // |--------------------------------------|
+
+    // Stel dat we iedere Author de hashcode 1 geven:
+    // |--------------------------------------|
+    // | hashcode     | objecten met die code |
+    // | 1            | a, b, c, d            | hashcode van d zit er al wel in, maar binnen die hashcode is d niet equal aan alle andere objecten, dus d is uniek
+    // |--------------------------------------|
+
+    // Klopt nog steeds, maar het terugvinden van d kost nu meer tijd.
+
+    // Stel dat we Author een meer onderscheidende waarde geven dan bij equals, en c en d zijn equal aan a resp. b maar hebben een andere hashcode:
+    // |--------------------------------------|
+    // | hashcode     | objecten met die code |
+    // | -1242499551  | a                     |
+    // | -1242499550  | b                     |
+    // | -12424995511 | c                     | DIT IS FOUT! c is immers equal aan a, dus c had er niet in gemogen!
+    // | -12424995501 | d                     | DIT IS FOUT! d is immers equal aan b, dus d had er niet in gemogen!
+    // |--------------------------------------|
 
     @Override
     public String toString() {

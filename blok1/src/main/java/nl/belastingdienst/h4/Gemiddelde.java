@@ -8,18 +8,17 @@ public class Gemiddelde {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        int cijfer = 0;
-
         List<Integer> cijfers = new ArrayList<>();
 
-        System.out.println("Geef wat cijfers (-1 is stoppen)");
+        System.out.println("Geef wat cijfers (-1 is stoppen): ");
 
+        int cijfer;
         while ((cijfer = s.nextInt()) != -1) {
             cijfers.add(cijfer);
         }
 
-        double v = cijfers.stream().mapToInt(i -> i).average().orElse(-1);
-        System.out.println(v);
+        double avg = cijfers.stream().mapToInt(i -> i).average().orElse(-1);
+        System.out.println(avg);
     }
 
 }
