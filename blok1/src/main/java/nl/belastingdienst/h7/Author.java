@@ -11,6 +11,7 @@ public class Author { // immutable class/objects als alle fields final zijn
     private final String name /*= null*/; // immutable field
     private int age /*= 0*/;
     public String genre /*= null*/;
+
     public Book debut /*= null*/;
     public boolean isLief /*= false*/;
     public char rating;
@@ -54,6 +55,11 @@ public class Author { // immutable class/objects als alle fields final zijn
      * @return
      */
     public int doeIets(String name) {
+        int i = this.age * 2;
+        System.out.println(i);
+
+        System.out.println(defaultAge);
+
         String verbodennaam; // lokale geen default waarde
         if (name.equals("tolkien")) {
             return 42;
@@ -114,5 +120,17 @@ public class Author { // immutable class/objects als alle fields final zijn
     public static List<Genre> getAllGenres() {
         // System.out.println(name);
         return List.of(Genre.HORROR, Genre.THRILLER, Genre.FANTASY);
+    }
+
+    public int geefDubbeleVanLeeftijd() {
+        return this.age * 2;
+    }
+
+    public static int geefDubbeleVanLeeftijd(Author eenAuthor) {
+        return eenAuthor.age * 2;
+    }
+
+    public static int geefDubbeleVanLeeftijd(int leeftijd) {
+        return leeftijd * 2;
     }
 }

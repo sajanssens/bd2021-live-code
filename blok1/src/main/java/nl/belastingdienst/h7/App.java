@@ -21,10 +21,22 @@ public class App {
 
         System.out.println(Author.max);
         System.out.println(Author.geefDeMaxLeeftijd());
-        System.out.println(Author.getAllGenres());
+        System.out.println(a.getAllGenres());
 
         a.doeIetsAnders();
         b.doeIetsAnders();
+
+        int i = a.geefDubbeleVanLeeftijd();
+        int j = b.geefDubbeleVanLeeftijd();
+
+        int i1 = Author.geefDubbeleVanLeeftijd(a);
+        int j1 = Author.geefDubbeleVanLeeftijd(b);
+
+        int aLeeftijd = 10;
+        int bLeeftijd = 12;
+
+        int i2 = Author.geefDubbeleVanLeeftijd(aLeeftijd);
+        int j2 = Author.geefDubbeleVanLeeftijd(bLeeftijd);
     }
 
 }
