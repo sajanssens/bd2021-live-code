@@ -68,6 +68,7 @@ public class ArraysCovariant {
         // a.addInterestInvariant(doubleList); // so; List<T> is INvariant
         // a.addInterestInvariant(integerList); // so; List<T> is INvariant
 
+        // a.addInterestCovariant(objectList); // NOK
         a.addInterestCovariant(numberList);
         a.addInterestCovariant(doubleList);
         a.addInterestCovariant(integerList);
