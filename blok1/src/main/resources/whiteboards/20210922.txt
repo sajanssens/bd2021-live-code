@@ -1,0 +1,39 @@
+Hoe pak je een project aan?
+
+Opdracht, gesprek(ken), offertes.
+
+Fases:
+	Requirements = eisen/wensen van de klant 		WAT
+		Architectuur: componenten, samenwerking daartussen
+			Microservices, client-server, web schermpjes?
+		Functioneel: WAT moet het systeem kunnen?
+			Raadplegen transacties
+		Technisch: server, cloud, database, ...?
+		Performance: inchecken <= 500ms
+		Security
+	Ontwerp = HOE?
+		Functioneel: hoe functioneel?
+		Technisch: hoe gaan we dit technisch gezien bouwen?
+			Klassendiagram, database ontwerp, ...
+	Bouw
+	Test
+	Release
+	Onderhoud
+		bugs fixen
+		nieuwe features toevoegen
+		kleine uitbreidingen
+		servers in de lucht houden
+
+Waterval: alle fases na elkaar; pas naar een volgende als de vorige klaar is.
+Agile: "wendbaar"
+	XP ('90)
+	Scrum ('00)
+	Kanban
+	Lean
+	Continuous delivery --> productie
+
+Functionaliteit: wat en hoe?
+Tijd: wanneer?
+Geld: hoeveel, dus hoeveel uren/mensen beschibaar?
+
+Kwaliteit: hoe goed? DOD = definition of done
