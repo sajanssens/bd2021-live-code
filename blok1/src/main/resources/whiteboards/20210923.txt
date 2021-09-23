@@ -1,0 +1,13 @@
+Voordeel van interfaces:
+    - low coupling
+    - open closed principle
+    - dependency inversion principle
+
+SOLID Principles:
+Single responsibility = a class should have only one responsibility (= a reason to change) SRP
+Open closed           = a class should be open for extension, but closed for modification OCP
+Liskov substitution   = als een subclass een methode overschrijft, moet die methode ook doen wat je ervan mag verwacht
+Interface segregation = hou je interface zo klein mogelijk (i.e. één methode); maak aparte interfaces voor verschillend gedrag; SRP voor interfaces
+Dependency inversion  = high level modules (kan vanalles zijn, bijv. een class, package, lib, ...) should not depend on low level modules, but the other way around
+
+Beter onderhoudbaar! Stabieler bij aanpassingen.
