@@ -16,7 +16,7 @@ public class PersonTest {
     }
 
     @Test
-    public void whenHaveBirthdayIsCalledOnAOldPersonHeDiesWithAssert() throws PersonDiedException {
+    public void whenHaveBirthdayIsCalledOnAOldPersonHeDiesWithAssert() {
         // given
         Person p = new Person(130);
 

@@ -5,8 +5,8 @@ public class Person {
     public static final String UNIVERSAL_RIGHTS = "...equal.";
     private int age;
 
-    public Person(int age) throws PersonDiedException {
-        setAge(age);
+    public Person(int age)  {
+        this.age = age;
     }
 
     public void haveBirthday() throws PersonDiedException {
