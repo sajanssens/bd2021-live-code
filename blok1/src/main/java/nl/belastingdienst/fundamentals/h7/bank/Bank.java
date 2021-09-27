@@ -1,9 +1,10 @@
 package nl.belastingdienst.fundamentals.h7.bank;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Bank {
+public class Bank implements Iterable<Account> {
 
     private List<Account> accounts = new ArrayList<>();
 
@@ -29,5 +30,23 @@ public class Bank {
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    @Override
+    public Iterator<Account> iterator() {
+        return new Iterator<>() {
+
+            int counter = 0;
+
+            @Override public boolean hasNext() {
+                return counter < accounts.size();
+            }
+
+            @Override public Account next() {
+                Account account = accounts.get(counter);
+                counter++;
+                return account;
+            }
+        };
     }
 }
