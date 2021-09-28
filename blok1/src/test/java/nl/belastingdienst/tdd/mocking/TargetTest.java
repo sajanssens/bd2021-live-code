@@ -1,19 +1,26 @@
 package nl.belastingdienst.tdd.mocking;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class TargetTest {
 
-    private Target target = new Target();
-    private Dependency dMock = mock(Dependency.class);
+    @Mock
+    private Dependency dMock;
+
+    @InjectMocks
+    private Target target;
 
     @Test
     void methode() {
         // given
-        target.setD(dMock);
 
         // when
         when(dMock.x()).thenReturn(10);
