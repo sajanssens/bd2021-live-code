@@ -1,0 +1,17 @@
+Hoe pak je een project aan?
+
+Opdracht, gesprek(ken), offertes, etc.
+
+Fase                                                                Ontwerpproduct:
+Requirements                                                        ...
+    = WAT wil de klant? WAT moet het systeem kunnen?
+
+Ontwerp
+    = HOE moet dit gaat werken?
+        Functioneel: hoe werkt dit precies voor de gebruiker?       ...
+        Technisch: hoe gaan we dit technisch gezien bouwen?         ...
+
+Bouw
+Test
+Release
+Onderhoud
