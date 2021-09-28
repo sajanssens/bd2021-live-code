@@ -1,13 +1,15 @@
 package nl.belastingdienst.tdd;
 
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class StringAdderTest {
+class StringAdderTest {
 
+    @DisplayName("Display name .....")
     @Test
-    public void whenAdderGetsNullItReturnsZero() {
+    void whenAdderGetsNullItReturnsZero() {
         StringAdder adder = new StringAdder();
         int zero = adder.add(null);
         assertEquals(0, zero);
@@ -30,10 +32,10 @@ public class StringAdderTest {
         assertEquals(4628468, largeNumber);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void whenAdderGetsNoNumberItThrowsException() {
         StringAdder adder = new StringAdder();
-        int wtf = adder.add("a");
+        assertThrows(IllegalArgumentException.class, () -> adder.add("a"));
     }
 
     @Test
