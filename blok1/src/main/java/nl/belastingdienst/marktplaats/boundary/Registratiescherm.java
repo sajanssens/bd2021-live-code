@@ -1,6 +1,7 @@
 package nl.belastingdienst.marktplaats.boundary;
 
 import nl.belastingdienst.marktplaats.domain.Bezorgwijze;
+import nl.belastingdienst.marktplaats.domain.Gebruiker;
 
 import java.util.List;
 
@@ -38,16 +39,17 @@ public class Registratiescherm implements Boundary {
     }
 
     private void add() {
-        String email = prompt("Geef uw e-mailadres.");
-        List<Bezorgwijze> all = bwDao.getAll();
+        String email = prompt("Geef uw e-mailadres: ");
 
+        List<Bezorgwijze> all = bwDao.getAll();
         System.out.println("Bezorgwijzen:");
         for (Bezorgwijze bezorgwijze : all) {
-            System.out.println("(" + bezorgwijze.ordinal() + ") " + bezorgwijze);
+            System.out.println("(" + (bezorgwijze.ordinal() + 1) + ") " + bezorgwijze);
         }
 
         String bw = prompt("Kies een bezorgwijze (1, 2, 3...)");
-
+        Gebruiker g = Gebruiker.builder().emailadres(email).bezorgwijze(Bezorgwijze.THUIS).build();
+        // gebruikerdao.save(g);
         System.out.println("Registratie toegevoegd!");
     }
 
