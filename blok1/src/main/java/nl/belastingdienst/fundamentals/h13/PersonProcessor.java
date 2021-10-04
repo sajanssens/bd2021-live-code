@@ -6,7 +6,14 @@ import java.util.List;
 
 public class PersonProcessor {
 
-    public void processPersons(List eenLijstMetDingen) {
+    public void processPersonsNotTypeSafe(List eenLijstMetDingen) {
+        for (Object ding : eenLijstMetDingen) {
+            Person person = (Person) ding;
+            System.out.println(person.getAge());
+        }
+    }
+
+    public void processPersonsTypeSafe(List eenLijstMetDingen) {
         for (Object ding : eenLijstMetDingen) {
             if (ding instanceof Person) {
                 Person person = (Person) ding;
@@ -15,7 +22,7 @@ public class PersonProcessor {
         }
     }
 
-    public void processPersons2(List<Person> people) {
+    public void processPersonsGeneric(List<Person> people) {
         for (Person person : people) {
             System.out.println(person.getAge());
         }

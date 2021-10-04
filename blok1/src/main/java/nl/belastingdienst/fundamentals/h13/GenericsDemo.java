@@ -2,39 +2,45 @@ package nl.belastingdienst.fundamentals.h13;
 
 import nl.belastingdienst.fundamentals.h8.Person;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GenericsDemo {
 
+    private final static PersonProcessor personProcessor = new PersonProcessor();
+
+    public static final Person AMBER = new Person("Amber", 23);
+    public static final Person MATTHIJS = new Person("Matthijs", 43);
+    public static final Person MARCO = new Person("Marco", 32);
+
+    private final static List listOfAnything = List.of(
+            AMBER, MATTHIJS, MARCO,
+            "Linh", "Pepijn",
+            1,
+            new IllegalAccessError()
+    );
+
+    private final static List<Person> personList = List.of(
+            AMBER, MATTHIJS, MARCO
+    );
+
     // Generics = Generic Types
     public static void main(String[] args) {
-        PersonProcessor processor = new PersonProcessor();
+        withoutGenerics();
+        withGenerics();
+    }
 
-        List personList = new ArrayList();
+    private static void withoutGenerics() {
+        // personProcessor.processPersonsNotTypeSafe(listOfAnything); // allowed but throws a RuntimeException!
+        personProcessor.processPersonsTypeSafe(listOfAnything);
+    }
 
-        personList.add(new Person("Amber", 23));
-        personList.add(new Person("Matthijs", 43));
-        personList.add(new Person("Marco", 32));
-        personList.add("Linh");
-        personList.add("Pepijn");
-        personList.add(1);
-        personList.add(new IllegalAccessError());
-
-        processor.processPersons(personList);
-
-        List<Person> personList2 = new ArrayList<>(); // diamond syntax
-
-        personList2.add(new Person("Amber", 23));
-        personList2.add(new Person("Matthijs", 43));
-        personList2.add(new Person("Marco", 32));
-
-        processor.processPersons2(personList2);
+    private static void withGenerics() {
+        personProcessor.processPersonsGeneric(personList);
 
         Processor<Double> doubleProcessor = new Processor<>();
-        // doubleProcessor.process(personList2);
-        doubleProcessor.process(List.of(1.0, 2.0, 3.0));
-        // doubleProcessor.process(personList);
+        // doubleProcessor.process(personList); // not allowed
+        // doubleProcessor.process(listOfAnything); // allowed with warning: still a RuntimeException!
+        doubleProcessor.process(List.of(1.0, 2.0, 3.0)); // allowed and type safe
     }
 
 }
