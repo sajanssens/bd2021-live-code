@@ -8,9 +8,9 @@ public class GenericsDemo {
 
     private final static PersonProcessor personProcessor = new PersonProcessor();
 
-    public static final Person AMBER = new Person("Amber", 23);
-    public static final Person MATTHIJS = new Person("Matthijs", 43);
-    public static final Person MARCO = new Person("Marco", 32);
+    private static final Person AMBER = new Person("Amber", 23);
+    private static final Person MATTHIJS = new Person("Matthijs", 43);
+    private static final Person MARCO = new Person("Marco", 32);
 
     private final static List listOfAnything = List.of(
             AMBER, MATTHIJS, MARCO,
@@ -25,22 +25,22 @@ public class GenericsDemo {
 
     // Generics = Generic Types
     public static void main(String[] args) {
-        withoutGenerics();
-        withGenerics();
-    }
-
-    private static void withoutGenerics() {
-        // personProcessor.processPersonsNotTypeSafe(listOfAnything); // allowed but throws a RuntimeException!
+        // Person processor:
+        personProcessor.processPersonsNotTypeSafe(listOfAnything); // allowed but throws a RuntimeException!
         personProcessor.processPersonsTypeSafe(listOfAnything);
-    }
-
-    private static void withGenerics() {
+        personProcessor.processPersonsGeneric(listOfAnything); // allowed with warning but throws a RuntimeException!
         personProcessor.processPersonsGeneric(personList);
 
+        // generic number processor:
         Processor<Double> doubleProcessor = new Processor<>();
-        // doubleProcessor.process(personList); // not allowed
-        // doubleProcessor.process(listOfAnything); // allowed with warning: still a RuntimeException!
         doubleProcessor.process(List.of(1.0, 2.0, 3.0)); // allowed and type safe
+        doubleProcessor.process(listOfAnything); // allowed with warning: still a RuntimeException!
+        // doubleProcessor.process(personList); // not allowed
+
+        Processor<Integer> intProcessor = new Processor<>();
+        intProcessor.process(List.of(1, 2, 3)); // allowed and type safe
+
+        // Processor<Person> pProcessor = new Processor<>(); // not allowed, Person is not a Number
     }
 
 }
