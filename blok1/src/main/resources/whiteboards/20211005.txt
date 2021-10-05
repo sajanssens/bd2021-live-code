@@ -1,0 +1,5 @@
+Retention SOURCE, CLASS, RUNTIME
+
+source 				class							machinecode (runtime)
+
+.java	-javac->	.class    -JIT compiler@JVM-> 	binair (0/1) CPU/OS
