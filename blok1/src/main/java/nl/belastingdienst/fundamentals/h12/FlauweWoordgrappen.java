@@ -5,7 +5,9 @@ import java.lang.reflect.Field;
 public class FlauweWoordgrappen {
 
     // member dependent of T
-    public <T> void process(Class<T> c, T anObjectOfTypeT) {
+    public <T> void process(T anObjectOfTypeT) {
+        Class<?> c = anObjectOfTypeT.getClass();
+
         for (Field field : c.getDeclaredFields()) {
             if (field.isAnnotationPresent(Bram.class)) {
                 try {

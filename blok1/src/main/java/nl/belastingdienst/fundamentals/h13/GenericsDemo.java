@@ -12,7 +12,7 @@ public class GenericsDemo {
     private static final Person MATTHIJS = new Person("Matthijs", 43);
     private static final Person MARCO = new Person("Marco", 32);
 
-    private final static List listOfAnything = List.of(
+    private final static List listOfAnything = List.of( // raw type (== geen type argument ingevuld)
             AMBER, MATTHIJS, MARCO,
             "Linh", "Pepijn",
             1,
@@ -26,10 +26,12 @@ public class GenericsDemo {
     // Generics = Generic Types
     public static void main(String[] args) {
         // Person processor:
-        personProcessor.processPersonsNotTypeSafe(listOfAnything); // allowed but throws a RuntimeException!
+        personProcessor.processPersonsNotTypeSafe(personList);
+        personProcessor.processPersonsNotTypeSafe(listOfAnything); // allowed but throws a ClassCastException!
+        personProcessor.processPersonsTypeSafe(personList);
         personProcessor.processPersonsTypeSafe(listOfAnything);
-        personProcessor.processPersonsGeneric(listOfAnything); // allowed with warning but throws a RuntimeException!
         personProcessor.processPersonsGeneric(personList);
+        personProcessor.processPersonsGeneric(listOfAnything); // allowed with warning but throws a RuntimeException!
 
         // generic number processor:
         Processor<Double> doubleProcessor = new Processor<>();
@@ -37,6 +39,7 @@ public class GenericsDemo {
         doubleProcessor.process(listOfAnything); // allowed with warning: still a RuntimeException!
         // doubleProcessor.process(personList); // not allowed
 
+        //     <type argument>
         Processor<Integer> intProcessor = new Processor<>();
         intProcessor.process(List.of(1, 2, 3)); // allowed and type safe
 
