@@ -1,5 +1,23 @@
-Retention SOURCE, CLASS, RUNTIME
+Annotaties
 
-source 				class							machinecode (runtime)
+    Retention SOURCE, CLASS, RUNTIME
 
-.java	-javac->	.class    -JIT compiler@JVM-> 	binair (0/1) CPU/OS
+    source 				class							machinecode (runtime @ JVM)
+
+    .java	-javac->	.class    -JIT compiler@JVM-> 	binair (0/1) CPU/OS
+
+
+Zelfstudie.
+    Suggesties:
+        - labs afmaken
+            - er unittests voor schrijven, pitest
+            - boek erop naslaan
+            - googlen, stackoverflow
+            - verder mee oefenen, uitbreiden, experimenteren met de labs, muscle (brain?) memory opbouwen
+        - iets van trellobord
+        - spelen met extra dingen (wiskunde, oefeningen)
+            - www.codewars.com, https://projecteuler.net/
+        - alvast met de case verder
+        - enthuware bestellen en daarmee oefenen
+        - youtube: onderwerpen bekijken die je wilt leren
+
