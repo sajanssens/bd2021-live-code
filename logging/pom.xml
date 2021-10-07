@@ -17,13 +17,24 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.32</version>
         </dependency>
-        <dependency>
+        <!-- werkt niet i.c.m. modularity -->
+        <!--<dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.14.1</version>
-            <scope>runtime</scope>
+            <version>2.11.1</version>
+        </dependency>-->
+        <!-- alternatief voor log4j die wel werkt i.c.m. modularity -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <!-- om kleuren te kunnen specificeren binnen logback -->
+        <dependency>
+            <groupId>org.tuxdude.logback.extensions</groupId>
+            <artifactId>logback-colorizer</artifactId>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
-
 
 </project>
