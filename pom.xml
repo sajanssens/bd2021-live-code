@@ -15,7 +15,7 @@
 
     <modules>
         <module>blok1</module>
-        <module>nogeenmodule</module>
+        <module>logging</module>
     </modules>
 
     <properties>
@@ -25,7 +25,7 @@
         <!-- op welke versie draait mijn applicatie? -->
         <!--  <maven.compiler.target>11</maven.compiler.target>-->
 
-        <!-- == source EN API versies EN target  -->
+        <!-- {source, API, target}-versies -->
         <maven.compiler.release>11</maven.compiler.release>
         <junit5version>5.8.1</junit5version>
     </properties>
