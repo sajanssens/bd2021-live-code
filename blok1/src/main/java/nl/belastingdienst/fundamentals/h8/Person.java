@@ -2,7 +2,7 @@ package nl.belastingdienst.fundamentals.h8;
 
 import java.util.Objects;
 
-public class Person {
+public class Person implements Comparable<Person> {
 
     private String name;
     private int age;
@@ -47,5 +47,12 @@ public class Person {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Person other) {
+        if (this.age > other.getAge()) return 1;
+        if (this.age < other.getAge()) return -1;
+        return 0;
     }
 }
