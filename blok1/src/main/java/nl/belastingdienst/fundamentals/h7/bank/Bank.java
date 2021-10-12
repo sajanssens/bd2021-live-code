@@ -3,6 +3,7 @@ package nl.belastingdienst.fundamentals.h7.bank;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Bank implements Iterable<Account> {
 
@@ -24,6 +25,46 @@ public class Bank implements Iterable<Account> {
         return total;
     }
 
+    public List<Account> filterByBalance(int bal) {
+        List<Account> filtered = new ArrayList<>();
+        for (Account account : accounts) {
+            if (account.getBalance() > bal) {
+                filtered.add(account);
+            }
+        }
+        return filtered;
+    }
+
+    public List<Account> filterByNr() {
+        List<Account> filtered = new ArrayList<>();
+        for (Account account : accounts) {
+            if (account.getNr().startsWith("NL")) {
+                filtered.add(account);
+            }
+        }
+        return filtered;
+    }
+
+    public List<Account> filterByNrLength() {
+        List<Account> filtered = new ArrayList<>();
+        for (Account account : accounts) {
+            if (account.getNr().length() <= 3) {
+                filtered.add(account);
+            }
+        }
+        return filtered;
+    }
+
+    public List<Account> filter(Predicate<Account> voorwaarde) {
+        List<Account> filtered = new ArrayList<>();
+        for (Account account : accounts) {
+            if (voorwaarde.test(account)) {
+                filtered.add(account);
+            }
+        }
+        return filtered;
+    }
+
     public void addAccount(Account account) {
         this.accounts.add(account);
     }
@@ -38,11 +79,13 @@ public class Bank implements Iterable<Account> {
 
             int counter = 0;
 
-            @Override public boolean hasNext() {
+            @Override
+            public boolean hasNext() {
                 return counter < accounts.size();
             }
 
-            @Override public Account next() {
+            @Override
+            public Account next() {
                 Account account = accounts.get(counter);
                 counter++;
                 return account;

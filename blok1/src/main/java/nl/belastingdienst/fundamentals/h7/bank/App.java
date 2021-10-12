@@ -6,7 +6,10 @@ public class App {
         Bank bank = new Bank(); // iterable = itereerbaar = je kunt er doorheen lopen
 
         for (Account a : bank) {
-            // a.
+            System.out.println(a);
         }
+
+        bank.filter(a -> a.getNr().length() <= 3);
+        bank.filter(a -> a.getNr().startsWith("NL"));
     }
 }

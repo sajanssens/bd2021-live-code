@@ -2,6 +2,7 @@ package nl.belastingdienst.fundamentals.h7.bank;
 
 public class Account {
 
+    private String nr;
     private double balance;
 
     public void deposit(double amount) {
@@ -22,4 +23,7 @@ public class Account {
         return this.balance;
     }
 
+    public String getNr() {
+        return nr;
+    }
 }
