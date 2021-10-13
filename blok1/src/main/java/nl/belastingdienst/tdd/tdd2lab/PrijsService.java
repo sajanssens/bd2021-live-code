@@ -1,5 +1,5 @@
 package nl.belastingdienst.tdd.tdd2lab;
 
-public interface PrijsPerZoneService {
+public interface PrijsService {
     int bereken(int zones);
 }
