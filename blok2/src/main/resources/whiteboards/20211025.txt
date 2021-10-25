@@ -1,0 +1,44 @@
+Transacties
+
+Een bundeling van acties, die of allemaal lukken, of allemaal niet == Atomair
+
+Atomair     = ondeelbaar, alles of niets
+Consistent  = moet DB in een consistente toestand achterlaten (dus relationele integriteit waarborgen)
+Isolatie    = transacties zijn in een bepaalde mate van elkaar geïsoleerd; concurrency, in hoeverre kunnen transacties door elkaar heen lopen, parallellisme/serialisme. Instelbaar.
+Duurzaam    = durable, eenmaal opgeslagen is het ook echt permanent.
+
+MySQL draait standaard op (localhost) poort 3306.
+
+SQL:
+    DDL
+        CREATE/ALTER/DROP TABLE etc.
+    DML
+        SELECT .. FROM ..
+        INSERT INTO ..
+        UPDATE .. SET ..=..
+        DELETE FROM ..
+
+ERD = Entity Relationship Diagram
+
+WHERE
+    zoeken op een deel van een string: via LIKE '%..%'
+
+GROUP BY
+
+op eerste kolom:
+------
+A 10 1 --> A [(10,1)]
+B 20 2     B [(20,2), (30,3)] --> reduceren tot één waarde, bijv. met AVG --> B 25 (2,3)
+B 30 3     C [(40,4)]
+C 40 4
+------
+
+Vuistregel: bij GROUP BY kun je alleen de velden in SELECT opnemen die ook in GROUP BY staan,
+            of geaggregeerde velden. Andere velden zijn namelijk verzamelingen in die groep.
+
+Als je iets moet doen "per ..." heb je vaak een GROUP BY nodig
+HAVING wordt per groepje uitgevoerd.
+
+Queries zijn gewoon tekstbestanden, die worden gecompileerd door het DBMS.
+Queries worden op een bepaalde manier uitgevoerd door het DBMS. Je hoopt op een slimme (geoptimaliseerde) manier.
+Je kunt hiervoor het zgn. query plan opvragen.
