@@ -9,13 +9,11 @@ public class JDBCBasics {
 
     public static void main(String[] args) throws ClassNotFoundException {
 
-
-        try {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbcdemo", "root", "root")) {
             // 1 driver laden
             // Class<?> deDriverClass = Class.forName("com.mysql.cj.jdbc.Driver");
 
             // 2
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbcdemo", "root", "root");
 
             // 3
             Statement statement = connection.createStatement();
@@ -32,9 +30,6 @@ public class JDBCBasics {
                 Person p = Person.builder().id(id).name(name).age(age).build();
                 log.info(p.toString());
             }
-
-            // 6
-            connection.close();
 
         } catch (SQLException e) {
             log.error("Er trad een SQL-fout op", e);
