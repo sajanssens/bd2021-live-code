@@ -4,11 +4,13 @@ import nl.belastingdienst.jpa.domain.Person;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Singleton
 public class PersonDao {
 
     @Inject
