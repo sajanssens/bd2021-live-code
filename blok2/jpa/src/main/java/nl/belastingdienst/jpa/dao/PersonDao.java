@@ -2,6 +2,7 @@ package nl.belastingdienst.jpa.dao;
 
 import nl.belastingdienst.jpa.domain.Person;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
@@ -11,6 +12,7 @@ public class PersonDao {
 
     private final EntityManager em;
 
+    @Inject
     public PersonDao(EntityManager em) { // DIY dependency injection
         this.em = em;
     }
