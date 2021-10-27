@@ -30,6 +30,5 @@ public class App {
         TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);// JPQL = Java Persistence QL
         List<Person> resultList = query.getResultList();
         resultList.forEach(System.out::println);
-
     }
 }
