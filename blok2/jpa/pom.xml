@@ -49,6 +49,20 @@
             <version>2.4.8.Final</version>       <!--contains CDI 1.2 -->
             <!-- See for versions: https://weld.cdi-spec.org/documentation/#9 -->
         </dependency>
+
+        <!-- logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.32</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.14.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

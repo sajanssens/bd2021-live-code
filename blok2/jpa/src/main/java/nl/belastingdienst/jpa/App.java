@@ -4,11 +4,16 @@ import nl.belastingdienst.jpa.dao.PersonDao;
 import nl.belastingdienst.jpa.domain.Person;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.util.List;
 
 public class App {
+
+    @Inject
+    private Logger log; // injection point
 
     @Inject
     private PersonDao dao;
@@ -33,6 +38,8 @@ public class App {
     }
 
     private void start() {
+        log.info("Starting app...");
+
         Person bram = Person.builder().name("Bram").age(42).build();
 
         dao.save(bram);
