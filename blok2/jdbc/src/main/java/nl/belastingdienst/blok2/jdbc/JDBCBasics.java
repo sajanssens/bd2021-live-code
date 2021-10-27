@@ -14,6 +14,7 @@ public class JDBCBasics {
             // Class<?> deDriverClass = Class.forName("com.mysql.cj.jdbc.Driver");
 
             // 2
+            // zie try (...) boven
 
             // 3
             Statement statement = connection.createStatement();
@@ -30,7 +31,6 @@ public class JDBCBasics {
                 Person p = Person.builder().id(id).name(name).age(age).build();
                 log.info(p.toString());
             }
-
         } catch (SQLException e) {
             log.error("Er trad een SQL-fout op", e);
         }
