@@ -34,7 +34,50 @@ public class PersonDao {
     }
 
     public List<Person> findAll() {
-        TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);// JPQL = Java Persistence QL
+        TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);// JPQL = Java Persistence Query Language
         return query.getResultList();
     }
+
+    public List<Person> findAllNamed() {
+        var query = em.createNamedQuery("findAll", Person.class);
+        return query.getResultList();
+    }
+
+    public List<Person> findBy(String name) {
+        var query = em.createQuery("SELECT p FROM Person p WHERE p.name LIKE :aName", Person.class);
+        query.setParameter("aName", name);
+        return query.getResultList();
+    }
+
+    public void remove(Person p) {
+        // performAsTransaction((e) -> em.remove(e));
+        em.getTransaction().begin();
+        em.remove(p);
+        em.getTransaction().commit();
+    }
+
+    public void update(Person p) {
+        em.getTransaction().begin();
+        em.merge(p);
+        em.getTransaction().commit();
+    }
+
+    public void updateFirstname(String newName, int pId) {
+        Person person = find(pId);
+
+        logIsTransactionActive();
+
+        em.getTransaction().begin();
+        logIsTransactionActive();
+        person.setName(newName);
+        em.getTransaction().commit();
+        logIsTransactionActive();
+
+        em.flush();
+    }
+
+    private void logIsTransactionActive() {
+        log.info("updateFirstname getTransaction().isActive() = {}", em.getTransaction().isActive());
+    }
+
 }

@@ -1,5 +1,6 @@
 package nl.belastingdienst.jpa;
 
+import nl.belastingdienst.jpa.dao.Dao;
 import nl.belastingdienst.jpa.dao.PersonDao;
 import nl.belastingdienst.jpa.domain.Person;
 import org.jboss.weld.environment.se.Weld;
@@ -51,5 +52,8 @@ public class App {
 
         List<Person> all = dao.findAll();
         all.forEach(p -> log.info(p.toString()));
+
+        dao.updateFirstname("Baas", bram.getId());
+
     }
 }
