@@ -16,12 +16,8 @@ public class PersonDao {
     @Inject
     private Logger log;
 
-    private final EntityManager em;
-
     @Inject
-    public PersonDao(EntityManager em) { // DIY dependency injection
-        this.em = em;
-    }
+    private EntityManager em;
 
     public void save(Person privateRyan) {
         log.info("Saving " + privateRyan);
