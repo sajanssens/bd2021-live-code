@@ -18,6 +18,9 @@
             <AppenderRef ref="console"/>
         </Root>
         <!-- for everything from nl.belastingdienst -->
-        <Logger name="nl.belastingdienst" level="TRACE"/>
+        <Logger name="nl.belastingdienst" level="DEBUG"/>
+
+        <Logger name="org.hibernate" level="DEBUG"/>
+        <Logger name="org.hibernate.type.descriptor.sql" level="TRACE"/>
     </Loggers>
 </Configuration>

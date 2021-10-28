@@ -1,7 +1,10 @@
 package nl.belastingdienst.jpa;
 
 import nl.belastingdienst.jpa.dao.PersonDao;
+import nl.belastingdienst.jpa.dao.TeamDao;
+import nl.belastingdienst.jpa.domain.Department;
 import nl.belastingdienst.jpa.domain.Person;
+import nl.belastingdienst.jpa.domain.Team;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 import org.slf4j.Logger;
@@ -17,7 +20,10 @@ public class App {
     private Logger log; // injection point
 
     @Inject
-    private PersonDao dao;
+    private PersonDao personDao;
+
+    @Inject
+    private TeamDao teamDao;
 
     public static void main(String[] args) {
         // CDI = Contexts and Dependency Injection
@@ -43,16 +49,39 @@ public class App {
         log.info("Starting app...");
 
         Person bram = Person.builder().name("Bram").age(42).build();
+        Person christian = Person.builder().name("Christian").age(28).build();
+        Person pepijn = Person.builder().name("Pepijn").age(25).build();
 
-        dao.save(bram);
+        personDao.save(bram);
 
-        Person ps = dao.find(bram.getId());
+        Person ps = personDao.find(bram.getId());
         log.info(ps.toString());
 
-        List<Person> all = dao.findAll();
+        List<Person> all = personDao.findAll();
         all.forEach(p -> log.info(p.toString()));
 
-        dao.updateFirstname("Baas", bram.getId());
+        personDao.updateFirstname("Baas", bram.getId());
+
+        Team bdjava2021_2 = Team.builder().name("Java-team najaar 2021").build();
+        // teamDao.save(bdjava2021_2);
+
+        bram.setTeam(bdjava2021_2);
+        christian.setTeam(bdjava2021_2);
+        pepijn.setTeam(bdjava2021_2);
+
+        personDao.save(bram);
+        personDao.save(christian);
+        personDao.save(pepijn);
+
+        List<Person> byTeamName = personDao.findByTeamName("Java-team");
+        byTeamName.forEach(p -> log.info(p.toString()));
+
+        Department hr = Department.builder().name("Human Resources Man.").build();
+
+        bram.setWorksAt(hr);
+        pepijn.setWorksAt(hr);
+        personDao.update(bram);
+        personDao.update(pepijn);
 
     }
 }

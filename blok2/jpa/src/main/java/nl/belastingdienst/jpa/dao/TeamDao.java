@@ -1,6 +1,6 @@
 package nl.belastingdienst.jpa.dao;
 
-import nl.belastingdienst.jpa.domain.Person;
+import nl.belastingdienst.jpa.domain.Team;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Singleton
-public class PersonDao {
+public class TeamDao {
 
     @Inject
     private Logger log;
@@ -19,63 +19,57 @@ public class PersonDao {
     @Inject
     private EntityManager em;
 
-    public void save(Person privateRyan) {
-        log.info("Saving " + privateRyan);
+    public void save(Team team) {
+        log.info("Saving " + team);
         // Application managed transaction! Zelf doen.
         EntityTransaction transaction = em.getTransaction();
 
         transaction.begin();
-        em.persist(privateRyan);
+        em.persist(team);
         transaction.commit();
     }
 
-    public Person find(int id) {
-        return em.find(Person.class, id); // find by PK
+    public Team find(int id) {
+        return em.find(Team.class, id); // find by PK
     }
 
-    public List<Person> findAll() {
-        TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);// JPQL = Java Persistence Query Language
+    public List<Team> findAll() {
+        TypedQuery<Team> query = em.createQuery("SELECT t FROM Team t", Team.class);// JPQL = Java Persistence Query Language
         return query.getResultList();
     }
 
-    public List<Person> findAllNamed() {
-        var query = em.createNamedQuery("Person.findAll", Person.class);
+    public List<Team> findAllNamed() {
+        var query = em.createNamedQuery("Team.findAll", Team.class);
         return query.getResultList();
     }
 
-    public List<Person> findBy(String name) {
-        var query = em.createQuery("SELECT p FROM Person p WHERE p.name LIKE :aName", Person.class);
+    public List<Team> findBy(String name) {
+        var query = em.createQuery("SELECT e FROM Team e WHERE e.name LIKE :aName", Team.class);
         query.setParameter("aName", name);
         return query.getResultList();
     }
 
-    public List<Person> findByTeamName(String teamName) {
-        var query = em.createNamedQuery("Person.findByTeamNamePart", Person.class);
-        query.setParameter("teamName", "%" + teamName + "%");
-        return query.getResultList();
-    }
-
-    public void remove(Person p) {
+    public void remove(Team e) {
         // performAsTransaction((e) -> em.remove(e));
         em.getTransaction().begin();
-        em.remove(p);
+        em.remove(e);
         em.getTransaction().commit();
     }
 
-    public void update(Person p) {
+    public void update(Team e) {
         em.getTransaction().begin();
-        em.merge(p);
+        em.merge(e);
         em.getTransaction().commit();
     }
 
-    public void updateFirstname(String newName, int pId) {
-        Person person = find(pId);
+    public void updateFirstname(String newName, int tId) {
+        Team e = find(tId);
 
         logIsTransactionActive();
 
         em.getTransaction().begin();
         logIsTransactionActive();
-        person.setName(newName);
+        e.setName(newName);
         em.flush();
         em.getTransaction().commit();
         logIsTransactionActive();
