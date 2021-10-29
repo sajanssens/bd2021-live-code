@@ -20,7 +20,7 @@
         <!-- for everything from nl.belastingdienst -->
         <Logger name="nl.belastingdienst" level="DEBUG"/>
 
-        <Logger name="org.hibernate" level="DEBUG"/>
-        <Logger name="org.hibernate.type.descriptor.sql" level="TRACE"/>
+        <Logger name="org.hibernate" level="WARN"/>
+        <Logger name="org.hibernate.type.descriptor.sql" level="INFO"/>
     </Loggers>
 </Configuration>

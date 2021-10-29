@@ -1,8 +1,11 @@
 package nl.belastingdienst.jpa;
 
+import nl.belastingdienst.jpa.dao.DepartmentDao;
+import nl.belastingdienst.jpa.dao.OfficeDao;
 import nl.belastingdienst.jpa.dao.PersonDao;
 import nl.belastingdienst.jpa.dao.TeamDao;
 import nl.belastingdienst.jpa.domain.Department;
+import nl.belastingdienst.jpa.domain.Office;
 import nl.belastingdienst.jpa.domain.Person;
 import nl.belastingdienst.jpa.domain.Team;
 import org.jboss.weld.environment.se.Weld;
@@ -11,10 +14,14 @@ import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Singleton
 public class App {
+
+    @Inject
+    private EntityManager em;
 
     @Inject
     private Logger log; // injection point
@@ -24,6 +31,12 @@ public class App {
 
     @Inject
     private TeamDao teamDao;
+
+    @Inject
+    private DepartmentDao departmentDao;
+
+    @Inject
+    private OfficeDao officeDao;
 
     public static void main(String[] args) {
         // CDI = Contexts and Dependency Injection
@@ -48,9 +61,20 @@ public class App {
     private void start() {
         log.info("Starting app...");
 
+        // data:
         Person bram = Person.builder().name("Bram").age(42).build();
         Person christian = Person.builder().name("Christian").age(28).build();
         Person pepijn = Person.builder().name("Pepijn").age(25).build();
+
+        Team bdjava2021_2 = Team.builder().name("Java-team najaar 2021").build();
+
+        Department hr = Department.builder().name("Human Resources Man.").build();
+        Department reclame = Department.builder().name("Reclame").build();
+        Department marloes = Department.builder().name("Marloes").build();
+
+        Office o = Office.builder().name("Multil*l").build();
+
+        // actions
 
         personDao.save(bram);
 
@@ -62,26 +86,48 @@ public class App {
 
         personDao.updateFirstname("Baas", bram.getId());
 
-        Team bdjava2021_2 = Team.builder().name("Java-team najaar 2021").build();
-        // teamDao.save(bdjava2021_2);
-
         bram.setTeam(bdjava2021_2);
         christian.setTeam(bdjava2021_2);
         pepijn.setTeam(bdjava2021_2);
 
-        personDao.save(bram);
+        personDao.save(bram); // team is also saved because of cascade in person
         personDao.save(christian);
         personDao.save(pepijn);
 
         List<Person> byTeamName = personDao.findByTeamName("Java-team");
         byTeamName.forEach(p -> log.info(p.toString()));
 
-        Department hr = Department.builder().name("Human Resources Man.").build();
-
         bram.setWorksAt(hr);
         pepijn.setWorksAt(hr);
         personDao.update(bram);
         personDao.update(pepijn);
 
+        personDao.save(bram);
+
+        // bidi synchronize both sides of the relationship:
+        Person foutje = Person.builder().name("Foutje").age(21).build();
+        Department dev = Department.builder().name("Dev").build();
+
+        personDao.save(foutje);
+        foutje.setWorksAt(dev);
+        personDao.update(foutje);
+        // departmentDao.save(dev); // saved by "cascade = persist" in person
+
+        // find office:
+        officeDao.save(o);
+
+        o.addDepartment(hr);
+        o.addDepartment(reclame);
+        o.addDepartment(marloes);
+        officeDao.update(o);
+
+        // ... do something else...
+
+        // works only when office is managed (i.e. "hot"):
+        Office officeManaged = officeDao.find(1);
+        officeManaged.getDepartments().forEach(d -> log.info(d.toString()));
+
+        Office officeDetached = officeDao.findDetached(1);
+        officeDetached.getDepartments().forEach(d -> log.info(d.toString()));
     }
 }

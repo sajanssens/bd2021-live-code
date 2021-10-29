@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Singleton
-public class PersonDao {
+public class PersonDao extends Dao<Person, Integer> {
 
     @Inject
     private Logger log;
@@ -19,28 +19,8 @@ public class PersonDao {
     @Inject
     private EntityManager em;
 
-    public void save(Person privateRyan) {
-        log.info("Saving " + privateRyan);
-        // Application managed transaction! Zelf doen.
-        EntityTransaction transaction = em.getTransaction();
-
-        transaction.begin();
-        em.persist(privateRyan);
-        transaction.commit();
-    }
-
     public Person find(int id) {
         return em.find(Person.class, id); // find by PK
-    }
-
-    public List<Person> findAll() {
-        TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);// JPQL = Java Persistence Query Language
-        return query.getResultList();
-    }
-
-    public List<Person> findAllNamed() {
-        var query = em.createNamedQuery("Person.findAll", Person.class);
-        return query.getResultList();
     }
 
     public List<Person> findBy(String name) {
@@ -55,18 +35,6 @@ public class PersonDao {
         return query.getResultList();
     }
 
-    public void remove(Person p) {
-        // performAsTransaction((e) -> em.remove(e));
-        em.getTransaction().begin();
-        em.remove(p);
-        em.getTransaction().commit();
-    }
-
-    public void update(Person p) {
-        em.getTransaction().begin();
-        em.merge(p);
-        em.getTransaction().commit();
-    }
 
     public void updateFirstname(String newName, int pId) {
         Person person = find(pId);
