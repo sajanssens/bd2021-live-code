@@ -104,7 +104,7 @@ public class App {
 
         personDao.save(bram);
 
-        // bidi synchronize both sides of the relationship:
+        // manage bidi: synchronize both sides of the relationship:
         Person foutje = Person.builder().name("Foutje").age(21).build();
         Department dev = Department.builder().name("Dev").build();
 
@@ -113,7 +113,7 @@ public class App {
         personDao.update(foutje);
         // departmentDao.save(dev); // saved by "cascade = persist" in person
 
-        // find office:
+        // manage the uni OneToMany relation:
         officeDao.save(o);
 
         o.addDepartment(hr);
@@ -123,11 +123,26 @@ public class App {
 
         // ... do something else...
 
+        o = null;
+        System.gc();
+        sleep(100);
+        accessingTheToManyCollection();
+    }
+
+    private void accessingTheToManyCollection() {
         // works only when office is managed (i.e. "hot"):
         Office officeManaged = officeDao.find(1);
         officeManaged.getDepartments().forEach(d -> log.info(d.toString()));
 
-        Office officeDetached = officeDao.findDetached(1);
-        officeDetached.getDepartments().forEach(d -> log.info(d.toString()));
+        // Office officeDetached = officeDao.findDetached(1);
+        // officeDetached.getDepartments().forEach(d -> log.info(d.toString()));
+    }
+
+    private void sleep(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            log.error("Sleep failed.", e);
+        }
     }
 }

@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Singleton
@@ -29,12 +27,18 @@ public class PersonDao extends Dao<Person, Integer> {
         return query.getResultList();
     }
 
+    public List<Person> findByUsingNative(String name) {
+        List resultList = em.createNativeQuery("SELECT * FROM Person AS p WHERE p.name LIKE ?")
+                .setParameter(1, name)
+                .getResultList();
+        return (List<Person>) resultList;
+    }
+
     public List<Person> findByTeamName(String teamName) {
         var query = em.createNamedQuery("Person.findByTeamNamePart", Person.class);
         query.setParameter("teamName", "%" + teamName + "%");
         return query.getResultList();
     }
-
 
     public void updateFirstname(String newName, int pId) {
         Person person = find(pId);
