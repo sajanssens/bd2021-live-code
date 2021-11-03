@@ -50,16 +50,22 @@ public class TeamDao {
     }
 
     public void remove(Team e) {
-        // performAsTransaction((e) -> em.remove(e));
-        em.getTransaction().begin();
-        em.remove(e);
-        em.getTransaction().commit();
+        performAsTransaction(() -> em.remove(e));
     }
 
     public void update(Team e) {
-        em.getTransaction().begin();
-        em.merge(e);
-        em.getTransaction().commit();
+        performAsTransaction(() -> em.merge(e));
+    }
+
+    public void performAsTransaction(Runnable function){
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            function.run();
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
     }
 
     public void updateFirstname(String newName, int tId) {
