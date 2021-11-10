@@ -1,0 +1,43 @@
+Opmerkingen
+	V meerderen hebben het over "planning", inplannen, overhead meenemen etc. zo werkt het niet in scrum. sprint -> velocity -> sprint -> etc.
+		- referentielijst: stories uit het verleden + SPs
+	V wijs aan op je scherm waar je het over hebt. sommigen deden dat wel goed.
+	V navigeren door je code... CLICK, BACK!
+	V code layout!
+	V depedency hell
+		- BOM = bill of material = pom met alleen maar dependencyManagement, waarin samenhang tussen versies vastligt
+		- bom van jupiter 5.8.1 -> mockito-junit-jupiter 4.0.0 hebben
+	V base64
+
+
+AJAX
+    Asynchronous Javascript And Xml
+    - Als tegenhanger voor hele pagina opnieuw laden bij een kleine wijziging.
+    - Doet een miniverzoek in HTTP/XML naar server, die stuurt in XML alleen beetje data terug,
+      pagina herlaadt alleen dat ene kleine stukje via Javascript.
+
+HTML-code wordt geinterpreteerd door de browser, net als CSS en JS.
+
+Java
+src -> class -> machinecode
+  javac     JIT (JVM = interpreter van classes)
+
+HTML/CSS/JS
+    server stuurt code naar browser (bijv. html5)
+    browser interpreteert het ("JVM") (browser moet css versie x en html 5 snappen)
+    IE is uit, want snapt moderne html/css/js niet goed.
+    Edge is nieuwe van MS.
+
+JS uitgevoerd door
+	Client: browser OF
+	Server: NodeJS (beetje zoals JVM, java.exe voor Java)
+	bijv. "node demo.js"
+	Node heeft ook een interactive shell, aka REPL: Read Evaluate Print Loop.
+
+JS wordt niet gecompileerd!!!!!
+	HTML en CSS ook niet!
+	Fouten zie je pas at runtime.
+
+TS wordt wél "gecompileerd" (getranspileerd: ts -> js, vertaalslag)
+    daardoor is TS (type) safe!
+
