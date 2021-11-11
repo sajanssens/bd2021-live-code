@@ -1,0 +1,71 @@
+HTTP = HyperText Transfer Protocol
+    Protocol om in plain tekst informatie uit te wisselen tussen client en server
+        - client is klant, die wil iets, heeft een vraag: REQUEST
+        - server is de serveerder, ober, bediener, die geeft antwoord op de vraag: RESPONSE.
+
+    REQUEST:
+        REQUEST LINE
+        HEADERS
+        EMPTY LINE
+        BODY
+
+        Bijv:
+        Get request:
+
+            GET /hello.htm HTTP/1.1
+            User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+            Host: www.tutorialspoint.com
+            Accept-Language: en-us
+            Accept-Encoding: gzip, deflate
+            Connection: Keep-Alive
+
+            (get heeft geen body)
+
+        Post request:
+            POST /cgi-bin/process.cgi HTTP/1.1
+            User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+            Host: www.tutorialspoint.com
+            Content-Type: application/x-www-form-urlencoded
+            Content-Length: length
+            Accept-Language: en-us
+            Accept-Encoding: gzip, deflate
+            Connection: Keep-Alive
+
+            licenseID=string&content=string&/paramsXML=string
+
+    RESPONSE:
+            A Status-line
+            HEADERS
+            EMPTY LINE
+            BODY
+
+        Bijv.
+
+        Get request op hello.htm
+            HTTP/1.1 200 OK
+            Date: Mon, 27 Jul 2009 12:28:53 GMT
+            Server: Apache/2.2.14 (Win32)
+            Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+            Content-Length: 88
+            Content-Type: text/html
+            Connection: Closed
+
+            <html>
+            <body>
+            <h1>Hello, World!</h1>
+            </body>
+            </html>
+
+HTTPS
+    plain tekst wordt versleuteld met certificaten
+
+HTTP status codes:
+    2xx: het ging goed
+    3xx: Redirection, omleiding
+    4xx: fout door client
+    5xx: fout door server
+
+NodeJS: om JS mee uit te voeren zonder browser, beetje zoals de JVM voor Java
+NPM: node package manager, beetje zoals mvn in java
+    dependency management, haalt zgn. node_modules binnen.
+    package.json is de "pom.xml" voor npm

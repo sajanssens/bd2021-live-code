@@ -41,3 +41,5 @@ JS wordt niet gecompileerd!!!!!
 TS wordt wél "gecompileerd" (getranspileerd: ts -> js, vertaalslag)
     daardoor is TS (type) safe!
 
+front end dev. kan front end bouwen, maar niet per se ook mooie layout maken
+UI/UX designer kan dat laatste wel --> vak apart
