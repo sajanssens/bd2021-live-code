@@ -1,0 +1,48 @@
+Java web frontend
+    JSP = Java Server Pages
+    JSF = Java Server Faces (JSP++)
+
+HTTP
+    Hyper Text Transfer Protocol
+    Communicatieprotocol tussen een server en een client
+    Wereldwijde standaard, vastgelegd in specificaties
+    Beveiligd/Onbeveiligd
+        HTTPS Beveiligd, S=Secure, Xolphin (Certificate Authorities)
+        Certificate een soort digitaal paspoort, staat je identiteit in,
+        mag maar door daarvoor geautoriseerde partijen worden uitgegeven (issued).
+    Request/response model (tussen client/server):
+        Kenmerken request:
+            Line        : POST /contacts HTTP/1.1
+            Headers     : Accept: ..
+                          Host: localhost:3000
+                          ...
+            <  >
+            Body        : {"name": "Bram", "age": 42} == http-entity, dit is voor een request optioneel! bijv. bij get-request niet nodig
+
+        Kenmerken response:
+            Line        : HTTP/1.1 200 OK
+            Headers     : Date: Mon, 27 Jul 2009 12:28:53 GMT
+                          ...
+            <  >
+            Body        : {"id": 1, "name": "Bram", "age": 42} == http-entity
+                          = het resultaat van het request, bijv. json, html, etc.
+
+    HTTP-methods
+        GET, POST, PUT, DELETE, PATCH, TRACE, HEAD, CONNECT, OPTIONS (=verbs)
+             add   update
+
+    Statuscodes
+        1xx informational
+        2xx OK
+        3xx redirect
+            301 definitief verplaatst
+            302 temporary verplaatst
+        4xx Error veroorzaakt door de client
+            404 not found
+            406 not acceptable
+        5xx Error veroorzaakt door de server
+            500 internal server error (er ging iets mis..)
+
+Builds:
+    JAR = Java ARchive
+    WAR = Web  ARchive
