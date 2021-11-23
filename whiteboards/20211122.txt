@@ -1,3 +1,32 @@
+Selectors: in Angular, maar ook in CSS, weten we nog?
+
+
+selector { // styling
+  property : value,
+  property : value,
+  property : value,
+}
+selectors:
+  1) html-element
+  2) class
+  3) id
+
+    1)
+    h1 {
+      ....
+    }
+
+    2)
+    .vetgedrukt {
+      ...
+    }
+
+    3)
+    #contactsTable {
+      ....
+    }
+
+
 Java web frontend
     JSP = Java Server Pages
     JSF = Java Server Faces (JSP++)
