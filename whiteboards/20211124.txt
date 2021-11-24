@@ -1,0 +1,60 @@
+JAX-WS: SOAP api in JEE
+
+JAX-RS: JAva Xml ReSt
+    API binnen JEE om REST-apps te bouwen.
+    Implementaties zijn bijv.: Jersey, RestEasy, staat al op de container
+
+Manieren op data te ontsluiten uit je app, richting geïnteresseerde clients:
+
+    SOAP = Simple Object Access Protocol (met XML?) WSDL
+    RPC  = Remote Procedure Call (EE: Remote EJBs gebruikt CORBA(?)); meestal platformafhankelijk!
+    REST = REpresentational State Transfer
+           Resource = representation
+           Bijv. De resource "Contact 1" heeft als representatie: {id: 1, name=Bram}
+           Een client kan zeggen: geef mij resource "Contact 1"
+           ..../contacts/1
+           Resource heeft ook altijd een eigen URI
+
+           Gebruikt HTTP als onderliggend protocol
+            REST call bestaat dan altijd uit een HTTP-verb (GET/POST/...) en een URI van de resource
+                = Werkwoord + zelfstandig naamwoord, bijv.:
+                  wat       + waarop?
+                  HTTP-verb + resource-name
+                    - GET  /contacts
+                    - GET  /contacts/1 --> contacts is een soort List, contacts/1 is dan contacts[1]
+                    - POST /contacts
+                    - GET  /contacts?firstname=bram
+                    - DELETE /contacts/476
+                    - PUT /contacts/3 met body: {name: Piet, age: 34}
+
+                    ophogen leeftijd van Piet:
+                    - PUT /contacts/3 met body: {name: Piet, age: 35}
+                    - PATCH /contacts/3 met body: {age: 35}
+
+                    laptop 1 van contact 2 ophalen?
+                    - GET /contacts/2/laptops/1/devices --> leidt aan de serverkant bijv. tot een SQL-query
+
+RESTful = volgens de rest-principes
+    - Connectedness
+        geef een link mee voor meer info over de resource
+        HATEOAS = Hypermedia As The Engine Of Application State = gebruik hyperlinks
+    - Addressability
+        ...?q= wordt meestal gebruikt om vrij te zoeken op een of meer velden met een LIKE
+    - Uniform interface
+        Safe: wijzigt deze call iets aan data (=state)?
+        IdemPotent: vrij vertaald: "hetzelfde effect", effect = de state op de server,
+            dus blijft de data hetzelfde als je deze operatie op dezelfde data blijft doen.
+            niet bedoeld is: de resultaten (response) van de call
+
+                Safe    IP
+        GET     V       V
+        POST    X       X
+        DELETE  X       V
+        PUT     X       V
+
+    - Statelessness
+        betekent het: de server mag geen state vasthouden? dus geen data opslaan? NEE!
+            = Application state, dat moet natuurlijk wel.
+        het betekent: er zijn geen sessies. ieder request staat op zichzelf.
+        dit zorgt ervoor dat je kunt opschalen!
+        dus client moet alle nodige state vasthouden en meesturen bij ieder volgende request

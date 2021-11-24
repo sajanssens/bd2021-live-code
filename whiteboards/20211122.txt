@@ -30,6 +30,8 @@ selectors:
 Java web frontend
     JSP = Java Server Pages
     JSF = Java Server Faces (JSP++)
+    JSTL = Java Standard Tag Library
+
 
 HTTP
     Hyper Text Transfer Protocol
