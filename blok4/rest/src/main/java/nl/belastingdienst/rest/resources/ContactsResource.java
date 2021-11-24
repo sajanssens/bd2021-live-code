@@ -20,4 +20,28 @@ public class ContactsResource {
     public List<Contact> getAll_MaarJeMagDitZelfWeten() {
         return contactDao.getContacts();
     }
+
+    //...??
+    // public ??? get(long id){
+    // zoek contact met id
+    // en return deze
+    // }
+
+    // ....???
+    // public ??? getByQ(String q){
+    // zoek alle contacts met q in de naam of in het emailadres
+    // en return deze
+    // }
+
+    // public ???    add(???) {
+    //      ???
+    // }
+
+    // public ??? put(???) {
+    //      ???
+    // }
+
+    // public ??? delete(???) {
+    //      ???
+    // }
 }
