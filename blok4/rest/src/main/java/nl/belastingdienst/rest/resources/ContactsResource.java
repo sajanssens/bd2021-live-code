@@ -3,41 +3,42 @@ package nl.belastingdienst.rest.resources;
 import nl.belastingdienst.rest.dao.ContactDao;
 import nl.belastingdienst.rest.domain.Contact;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.inject.Inject;
+import javax.ws.rs.*;
 import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static nl.belastingdienst.rest.util.Responses.badRequest;
 
 @Path("contacts")
 public class ContactsResource {
 
-    private final ContactDao contactDao = new ContactDao();
+    @Inject
+    private ContactDao contactDao;
 
     @GET
     @Produces(APPLICATION_JSON)
-    public List<Contact> getAll() {
-        return contactDao.getContacts();
+    public List<Contact> getAll(@QueryParam("q") String q) {
+        return contactDao.getContacts(q);
     }
 
-    @GET @Path("{id}")
+    @Path("{id}")
     @Produces(APPLICATION_JSON)
-    public Contact get(@PathParam("id") long id) {
-        return contactDao.getContact(id).orElseThrow(() -> badRequest(id));
+    public ContactResource get(@PathParam("id") long id) {
+        return new ContactResource();
     }
 
     // ....???
     // public ??? getByQ(String q){
-    // zoek alle contacts met q in de naam of in het emailadres
-    // en return deze
+    //  zoek alle contacts met q in de naam of in het emailadres
+    //  en return deze
     // }
 
-    // public ???    add(???) {
-    //      ???
-    // }
+    @POST
+    @Produces(APPLICATION_JSON)
+    @Consumes(APPLICATION_JSON)
+    public Contact add(Contact input) {
+        return contactDao.add(input);
+    }
 
     // public ??? put(???) {
     //      ???
