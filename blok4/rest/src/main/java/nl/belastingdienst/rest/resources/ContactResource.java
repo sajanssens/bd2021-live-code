@@ -1,6 +1,7 @@
 package nl.belastingdienst.rest.resources;
 
 import nl.belastingdienst.rest.dao.ContactDao;
+import nl.belastingdienst.rest.dao.ContactDaoMock;
 import nl.belastingdienst.rest.domain.Contact;
 
 import javax.inject.Inject;

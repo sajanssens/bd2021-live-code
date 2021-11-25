@@ -1,6 +1,7 @@
 package nl.belastingdienst.rest.resources;
 
 import nl.belastingdienst.rest.dao.ContactDao;
+import nl.belastingdienst.rest.dao.ContactDaoMock;
 import nl.belastingdienst.rest.domain.Contact;
 
 import javax.inject.Inject;
@@ -25,7 +26,7 @@ public class ContactsResource {
     }
 
     @Path("{id}")
-    public ContactResource get(@PathParam("id") long id) {
+    public ContactResource contactResource(@PathParam("id") long id) {
         this.contactResource.setId(id);
         return this.contactResource; // forward all requests on  contacts/{id} to ContactResource
     }
@@ -34,20 +35,12 @@ public class ContactsResource {
     // public ??? getByQ(String q){
     //  zoek alle contacts met q in de naam of in het emailadres
     //  en return deze
-    // }
 
     @POST
-    @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
     public Contact add(Contact input) {
         return contactDao.add(input);
     }
-
-    // public ??? put(???) {
-    //      ???
-    // }
-
-    // public ??? delete(???) {
-    //      ???
     // }
 }

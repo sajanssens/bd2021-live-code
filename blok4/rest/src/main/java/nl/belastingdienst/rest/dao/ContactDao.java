@@ -2,58 +2,59 @@ package nl.belastingdienst.rest.dao;
 
 import nl.belastingdienst.rest.domain.Contact;
 
-import javax.inject.Singleton;
-import java.util.ArrayList;
+import javax.annotation.PreDestroy;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.stream.Collectors.toList;
+import static javax.ejb.TransactionAttributeType.REQUIRED;
+import static nl.belastingdienst.rest.util.Responses.throwBadRequest;
 
-@Singleton // uit CDI
+// @ApplicationScoped // Managed CDI bean, dus geen super powers
+@Stateless //            Managed Enterprise Java Bean (EJB): hij krijgt super powers (zoals transaction capabilities).
+//                       Stateless: de container maakt bij elk request een nieuwe instance;
+//                       de class kan dus ook beter geen data-fields bevatten (dat heeft geen zin)!
 public class ContactDao {
 
-    private final Contact.ContactBuilder cb = Contact.builder();
+    // STATE: doesn't make sense in Stateless EJB.
+    // private String name;
 
-    private List<Contact> contacts = new ArrayList<>(List.of(
-            cb.firstName("Bram").surname("Janssens").email("s.a.janssens@gmail.com").id(1L).build(),
-            cb.firstName("Joop").surname("Janssens").email("j.janssens@gmail.com").id(2L).build(),
-            cb.firstName("Mieke").surname("Janssens").email("m.janssens@gmail.com").id(3L).build()
-    ));
+    @PersistenceContext // Container managed EntityManager
+    private EntityManager em;
+
+    // BEHAVIOUR:
 
     public List<Contact> getContacts(String q) {
-        return q == null ? this.contacts :
-                contacts.stream()
-                        .filter(c -> c.getFirstName().contains(q))
-                        .collect(toList());
+        return q == null ?
+                em.createNamedQuery("Contact.findAll", Contact.class)
+                        .getResultList() :
+                em.createNamedQuery("Contact.findByQ", Contact.class)
+                        .setParameter("q", "%" + q + "%")
+                        .getResultList();
     }
 
-    public Optional<Contact> getContact(long id) {
-        return contacts.stream() // 1) create a stream
-                .filter(c -> c.getId() == id) // 2) bewerk de elementen in de stream
-                .findAny();          // 3) reduce the stream
+    public Optional<Contact> getContact(Long id) {
+        return Optional.ofNullable(em.find(Contact.class, id));
     }
 
-    public Contact add(Contact input) {
-        input.setId(getMaxId() + 1);
-        this.contacts.add(input);
-        return input;
+    @TransactionAttribute(REQUIRED)  // = default; whole annotation can be omitted when choosing REQUIRED.
+    //                                  Deze methode wordt in een databasetransactie op de server uitgevoerd.
+    //                                  Als er al een transactie loopt, gebruikt de server die, anders maakt hij een nieuwe transactie aan.
+    public Contact add(Contact c) {
+        em.persist(c);
+        return c;
     }
 
-    private long getMaxId() {
-        return this.contacts.stream()
-                .mapToLong(Contact::getId)
-                .max().orElseThrow(() -> new RuntimeException("Add contact failed; no id generated."));
+    public void remove(Long id) {
+        getContact(id).ifPresentOrElse(em::remove, throwBadRequest(id));
     }
 
-    public void remove(long id) {
-        Contact contact = getContact(id).get();
-        this.contacts.remove(contact);
+    public Contact update(Long id, Contact updatedContact) {
+        updatedContact.setId(id);
+        return em.merge(updatedContact);
     }
 
-    public Contact update(long id, Contact updatedContact) {
-        Contact contact = getContact(id).get();
-        int i = this.contacts.indexOf(contact);
-        this.contacts.add(i, updatedContact);
-        return updatedContact;
-    }
 }
