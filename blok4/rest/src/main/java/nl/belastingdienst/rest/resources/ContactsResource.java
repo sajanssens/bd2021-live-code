@@ -5,12 +5,14 @@ import nl.belastingdienst.rest.domain.Contact;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import java.util.List;
+import java.util.Optional;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("/contacts")
+@Path("contacts")
 public class ContactsResource {
 
     private final ContactDao contactDao = new ContactDao();
@@ -21,11 +23,12 @@ public class ContactsResource {
         return contactDao.getContacts();
     }
 
-    //...??
-    // public ??? get(long id){
-    // zoek contact met id
-    // en return deze
-    // }
+    @GET @Path("{id}")
+    @Produces(APPLICATION_JSON)
+    public Contact get(@PathParam("id") long id){
+        Optional<Contact> contact = contactDao.getContact(id);
+        return contact.orElse(null);
+    }
 
     // ....???
     // public ??? getByQ(String q){

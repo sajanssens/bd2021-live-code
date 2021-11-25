@@ -4,6 +4,7 @@ import nl.belastingdienst.rest.domain.Contact;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ContactDao {
 
@@ -17,5 +18,11 @@ public class ContactDao {
 
     public List<Contact> getContacts() {
         return contacts;
+    }
+
+    public Optional<Contact> getContact(long id) {
+        return contacts.stream() // 1) create a stream
+                .filter(c -> c.getId() == id) // 2) bewerk de elementen in de stream
+                .findAny();          // 3) reduce the stream
     }
 }
