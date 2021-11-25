@@ -15,6 +15,9 @@ public class ContactsResource {
     @Inject
     private ContactDao contactDao;
 
+    @Inject
+    private ContactResource contactResource;
+
     @GET
     @Produces(APPLICATION_JSON)
     public List<Contact> getAll(@QueryParam("q") String q) {
@@ -22,9 +25,9 @@ public class ContactsResource {
     }
 
     @Path("{id}")
-    @Produces(APPLICATION_JSON)
     public ContactResource get(@PathParam("id") long id) {
-        return new ContactResource();
+        this.contactResource.setId(id);
+        return this.contactResource; // forward all requests on  contacts/{id} to ContactResource
     }
 
     // ....???

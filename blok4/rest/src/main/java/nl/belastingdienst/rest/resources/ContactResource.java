@@ -11,23 +11,30 @@ import static nl.belastingdienst.rest.util.Responses.badRequest;
 
 public class ContactResource {
 
+    private long id;
+
     @Inject
     private ContactDao contactDao;
 
-    @GET @Path("{id}")
+    @GET
     @Produces(APPLICATION_JSON)
-    public Contact get(@PathParam("id") long id) {
-        return contactDao.getContact(id).orElseThrow(() -> badRequest(id));
+    public Contact get() {
+        return contactDao.getContact(this.id).orElseThrow(() -> badRequest(this.id));
     }
 
-    @DELETE @Path("{id}")
-    @Produces(APPLICATION_JSON)
-    public void delete(@PathParam("id") long id) {
-        contactDao.remove(id);
+    @DELETE
+    public void delete() {
+        contactDao.remove(this.id);
     }
 
-    @PUT @Path("{id}")
-    public Contact put(@PathParam("id") long id, Contact updatedContact) {
-        return contactDao.update(id, updatedContact);
+    @PUT
+    @Produces(APPLICATION_JSON)
+    @Consumes(APPLICATION_JSON)
+    public Contact put(Contact updatedContact) {
+        return contactDao.update(this.id, updatedContact);
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
