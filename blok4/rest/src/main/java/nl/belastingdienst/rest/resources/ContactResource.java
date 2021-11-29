@@ -1,7 +1,6 @@
 package nl.belastingdienst.rest.resources;
 
 import nl.belastingdienst.rest.dao.ContactDao;
-import nl.belastingdienst.rest.dao.ContactDaoMock;
 import nl.belastingdienst.rest.domain.Contact;
 
 import javax.inject.Inject;
@@ -10,12 +9,18 @@ import javax.ws.rs.*;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static nl.belastingdienst.rest.util.Responses.badRequest;
 
+// No @Path in a subresource!
+// This runs @ contacts/{id}
 public class ContactResource {
 
     private long id;
 
     @Inject
     private ContactDao contactDao;
+
+    @Inject
+    private ContactLaptopsResource contactLaptopsResource;
+
 
     @GET
     @Produces(APPLICATION_JSON)
@@ -33,6 +38,13 @@ public class ContactResource {
     @Consumes(APPLICATION_JSON)
     public Contact put(Contact updatedContact) {
         return contactDao.update(this.id, updatedContact);
+    }
+
+    // no http-method annotation!
+    // no content type annotation!
+    @Path("laptops")
+    public ContactLaptopsResource laptops() {
+        return contactLaptopsResource;
     }
 
     public void setId(long id) {
