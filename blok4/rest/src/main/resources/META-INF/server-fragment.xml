@@ -8,7 +8,7 @@
     -->
 
     <!-- VOOR JPA toevoegen (en aanpassen username/password): -->
-    <dataSource id="DefaultDataSource" jndiName="jdbc/MySQL">
+    <dataSource id="DefaultDataSource" jndiName="jdbc/MySQL"> <!-- JNDI: Java Naming and Directory Interface (API) -->
         <jdbcDriver libraryRef="MySQLLib"/>
         <properties databaseName="hrm"
                     serverName="localhost" portNumber="3306"

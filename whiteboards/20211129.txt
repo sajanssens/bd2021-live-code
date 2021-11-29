@@ -1,0 +1,11 @@
+Stappenplan JPA in JEE (rest)
+    - dependency op de JPA-API
+    - server.xml aanpassen: dataSource en library
+    - mysql.jar op de server zetten in een map die op het classpath van de server staat
+    - persistence.xml aanmaken met:
+        - transaction-type="JTA"
+        - verwijzing naar datasource in server.xml (via <jta-data-source>...)
+        - overige properties
+    - een entity aanmaken (@Entity en @Id)
+    - Dao maken met @PersistenceContext op EntityManager
+    - coderen!

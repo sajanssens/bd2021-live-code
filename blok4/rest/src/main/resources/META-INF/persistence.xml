@@ -13,7 +13,7 @@
                  die staat in (...\)wlp\usr\servers\defaultServer\ -->
 
             <!-- verplichte properties: -->
-            <property name="javax.persistence.schema-generation.database.action" value="create"/>
+            <property name="javax.persistence.schema-generation.database.action" value="create"/> <!--werkt voor alle persistence providers-->
             <property name="eclipselink.ddl-generation.output-mode" value="database"/>
 
             <!-- optionele properties: -->

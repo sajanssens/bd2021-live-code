@@ -22,8 +22,8 @@ public class ContactDao {
     // STATE: doesn't make sense in Stateless EJB.
     // private String name;
 
-    @PersistenceContext // Container managed EntityManager
-    private EntityManager em;
+    @PersistenceContext // Container managed EntityManager, not via @Inject
+    private EntityManager em; // container, geef mij een EntityManager
 
     // BEHAVIOUR:
 
@@ -44,6 +44,7 @@ public class ContactDao {
     //                                  Deze methode wordt in een databasetransactie op de server uitgevoerd.
     //                                  Als er al een transactie loopt, gebruikt de server die, anders maakt hij een nieuwe transactie aan.
     public Contact add(Contact c) {
+        // no em.gettransation.begin/commit/rollback: is managed by (EJB) container at the server
         em.persist(c);
         return c;
     }
