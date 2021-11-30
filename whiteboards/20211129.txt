@@ -1,3 +1,23 @@
+Ingredienten jpa JSE
+    dependencies:
+        JPA: API
+        JPA implementatie: bijv. hibernate of eclipselink (die staat al op liberty)
+    database bijv. mysql.
+    persistence.xml
+        database url/user/password
+        welke database driver
+        persistence provider properties (bijv. voor hibernate)
+    code:
+        Entity class met @Entity @Id, is mijn tabel in de DB
+        EntityManager, application managed
+
+JPA in JEE: wat is afwijkend t.o.v. JSE?
+    EntityManager krijgen we nu van de container, want is "container managed"
+    JPA implementatie: we gebruiken degene die al op de container staat, dus eclipselink
+    persistence.xml
+        database url/user/password --> naar server.xml
+    database adapter zelf op de server zetten
+
 Stappenplan JPA in JEE (rest)
     - dependency op de JPA-API
     - server.xml aanpassen: dataSource en library
