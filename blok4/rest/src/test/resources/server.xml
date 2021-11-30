@@ -10,13 +10,13 @@
     <httpEndpoint id="defaultHttpEndpoint" httpPort="9081" httpsPort="9444"/>
 
     <!-- H2 for arquillian integration tests -->
-    <dataSource id="DefaultDataSource" jndiName="jdbc/MySQL">
-        <jdbcDriver libraryRef="MySQLLib" />
-        <properties databaseName="hrm" serverName="localhost" portNumber="3306" user="root" password="root" />
+    <dataSource id="h2test" jndiName="jdbc/h2"> <!-- must start with jdbc/ -->
+        <jdbcDriver libraryRef="H2Lib"/>
+        <properties URL="jdbc:h2:mem:testdb" user="sa" password=""/>
     </dataSource>
 
-    <library id="MySQLLib">
-        <fileset dir="${wlp.install.dir}/usr/shared" includes="mysql.jar" />
+    <library id="H2Lib">
+        <file name="${wlp.install.dir}/usr/shared/h2.jar"/> <!--staat op het classpath van de server-->
     </library>
 
 </server>

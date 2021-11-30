@@ -5,8 +5,8 @@
     <container qualifier="wlp" default="true">
         <configuration>
             <!-- for managed -->
-            <property name="wlpHome">C:\Java\openliberty-javaee8-21.0.0.11\wlp</property>
-            <property name="httpPort">9080</property>
+            <property name="wlpHome">target/liberty/wlp</property>
+            <property name="httpPort">9081</property>
 
             <property name="serverStartTimeout">60</property>
             <property name="appDeployTimeout">60</property>
