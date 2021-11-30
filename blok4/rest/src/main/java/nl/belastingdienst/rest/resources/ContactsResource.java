@@ -23,38 +23,19 @@ public class ContactsResource {
     @GET
     @Produces(APPLICATION_JSON)
     @Operation(description = "Gets all contacts or filtered by q.")
+    // Add API documentation for mpOpenAPI, see https://openliberty.io/blog/2018/05/22/microprofile-openapi-intro.html
+    // and for a quick overview: https://github.com/eclipse/microprofile-open-api/blob/master/spec/src/main/asciidoc/microprofile-openapi-spec.asciidoc#annotations
     public List<Contact> getAll(@Parameter(description = "Search on firstname and/or surname")
                                 @QueryParam("q") String q) {
         return contactDao.getContacts(q);
     }
 
-    // ....???
-    // public ??? getByQ(String q){
-    //  zoek alle contacts met q in de naam of in het emailadres
-    //  en return deze
-
     // Met een subresource:
-    @Path("{id}")
-    public ContactResource contactResource(@PathParam("id") long id) {
+    @Path("{contactId}")
+    public ContactResource contactResource(@PathParam("contactId") long id) {
         this.contactResource.setId(id);
         return this.contactResource; // forward all requests on  contacts/{id} to ContactResource
     }
-
-    // Zonder een subresource:
-    // @Path("{id}")
-    // public Contact contact(@PathParam("id") long id) {
-    //     // ...
-    // }
-    //
-    // @Path("{id}/laptops")
-    // public List<Laptop> laptops(@PathParam("id") long cid) {
-    //     // ...
-    // }
-    //
-    // @Path("{id}/laptops/{lapId}")
-    // public List<Laptop> laptop(@PathParam("id") long id, @PathParam("lapId") long lapId) {
-    //     // ...
-    // }
 
     @POST
     @Consumes(APPLICATION_JSON)
@@ -62,5 +43,4 @@ public class ContactsResource {
     public Contact add(Contact input) {
         return contactDao.add(input);
     }
-    // }
 }

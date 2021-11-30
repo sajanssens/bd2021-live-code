@@ -3,6 +3,7 @@ package nl.belastingdienst.rest.resources;
 import nl.belastingdienst.rest.dao.ContactDao;
 import nl.belastingdienst.rest.domain.Contact;
 
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 
@@ -11,6 +12,8 @@ import static nl.belastingdienst.rest.util.Responses.badRequest;
 
 // No @Path in a subresource!
 // This runs @ contacts/{id}
+@Dependent // deze is injecteerbaar (als discovery-mode=annotated) en
+//            de levensduur van deze CDI-bean is hetzelfde (dependent) van de klasse waarin hij geinjecteerd wordt
 public class ContactResource {
 
     private long id;
@@ -20,7 +23,6 @@ public class ContactResource {
 
     @Inject
     private ContactLaptopsResource contactLaptopsResource;
-
 
     @GET
     @Produces(APPLICATION_JSON)

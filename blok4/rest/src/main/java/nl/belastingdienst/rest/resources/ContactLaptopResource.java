@@ -2,6 +2,7 @@ package nl.belastingdienst.rest.resources;
 
 import nl.belastingdienst.rest.domain.Laptop;
 
+import javax.enterprise.context.Dependent;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -11,6 +12,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 // No @Path in a subresource!
 // This runs @ contacts/{id}/laptops/{id}
+@Dependent
 public class ContactLaptopResource {
 
     private long id;
