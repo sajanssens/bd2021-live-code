@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="new server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <feature>webProfile-8.0</feature>
+        <feature>localConnector-1.0</feature>
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint" httpPort="9081" httpsPort="9444"/>
+
+    <!-- H2 for arquillian integration tests -->
+    <dataSource id="DefaultDataSource" jndiName="jdbc/MySQL">
+        <jdbcDriver libraryRef="MySQLLib" />
+        <properties databaseName="hrm" serverName="localhost" portNumber="3306" user="root" password="root" />
+    </dataSource>
+
+    <library id="MySQLLib">
+        <fileset dir="${wlp.install.dir}/usr/shared" includes="mysql.jar" />
+    </library>
+
+</server>
+
