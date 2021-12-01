@@ -7,6 +7,7 @@ docker run ^
     --restart unless-stopped ^
     --network bd2021 ^
     -e MYSQL_ROOT_PASSWORD=root ^
+    -e MYSQL_DATABASE=hrm ^
     -d ^
     -p 3307:3306 ^
     mysql:latest
