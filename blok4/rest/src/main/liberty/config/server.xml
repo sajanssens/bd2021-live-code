@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Open Liberty Java EE 7 Server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <feature>webProfile-8.0</feature>
+        <feature>localConnector-1.0</feature>
+    </featureManager>
+
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint id="defaultHttpEndpoint" httpPort="9080" httpsPort="9443"/>
+
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true"/>
+
+    <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
+    <ssl id="defaultSSLConfig" trustDefaultCerts="true"/>
+
+    <!-- Prevent NO_USER_REGISTRY error -->
+    <basicRegistry id="basic" realm="dummyRealm"/>
+
+    <!-- MySQL definition -->
+    <dataSource id="DefaultDataSource" jndiName="jdbc/MySQL">
+        <jdbcDriver libraryRef="MySQLLib"/>
+        <properties databaseName="hrm" serverName="bd2021-mysql" portNumber="3306" user="root" password="root"/>
+    </dataSource>
+
+    <!-- MySQL driver JAR -->
+    <library id="MySQLLib">
+        <fileset dir="/opt/ol/wlp/lib" includes="mysql-connector-java-8.0.25.jar"/>
+    </library>
+
+</server>
