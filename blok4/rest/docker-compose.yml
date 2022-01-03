@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  app:
+    image: bd2021-rest
+    environment:
+      MYSQL_HOST: mysql
+    ports:
+      - "9090:9080"
+  mysql:
+    image: mysql:latest
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hrm
+    ports:
+      - "3307:3306"
+
+volumes:
+  mysql-data:

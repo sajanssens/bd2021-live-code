@@ -13,9 +13,14 @@ docker run ^
     mysql:latest
 
 REM create image for this project (rest)
-docker build -t rest-docker .
+docker build -t bd2021-rest .
 
 REM ... and run it in docker
-docker run --name rest-docker --network bd2021 -dp 9090:9080 rest-docker
+docker run ^
+    --name bd2021-rest ^
+    --network bd2021 ^
+    -e MYSQL_HOST=bd2021-mysql ^
+    -dp 9090:9080 ^
+    bd2021-rest
 
 REM NOTE: you can also run the Dockerfile with IDEA run config (where you map ports and choose network)
