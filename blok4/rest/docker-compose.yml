@@ -2,6 +2,7 @@ version: "3.7"
 
 services:
   app:
+    build: .
     image: bd2021-rest
     environment:
       MYSQL_HOST: mysql
