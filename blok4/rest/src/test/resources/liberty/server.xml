@@ -16,7 +16,7 @@
     </dataSource>
 
     <library id="H2Lib">
-        <file name="${wlp.install.dir}/usr/shared/h2.jar"/> <!--staat op het classpath van de server-->
+        <file name="lib/global/h2.jar"/>
     </library>
 
 </server>

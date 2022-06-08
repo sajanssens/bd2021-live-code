@@ -21,6 +21,10 @@ import static javax.ws.rs.client.Entity.entity;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.junit.Assert.assertEquals;
 
+// Testserver klaarzetten met `mvn liberty:create`
+// Daarna zijn de tests te runnen vanuit IDEA.
+// Alles gebeurt sowieso in één keer via `mvn verify`
+
 @RunWith(Arquillian.class) // 1: dit is een arquillian test
 public class AppIT {
 
@@ -69,7 +73,7 @@ public class AppIT {
         // get all contacts
         List<Contact> list = postman
                 .target(contactsResourcePath)
-                .request().get(new GenericType<List<Contact>>() {});
+                .request().get(new GenericType<List<Contact>>() { });
 
         assertEquals(list.size(), 2);
         assertEquals("Bram", list.get(0).getFirstName());
