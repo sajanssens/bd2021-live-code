@@ -1,23 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <server description="new server">
 
     <!-- Enable features -->
+    <!--The Liberty Maven Plugin has generated Liberty features necessary for your application in configDropins/overrides/generated-features.xml-->
     <featureManager>
-        <feature>webProfile-8.0</feature>
+        <feature>webProfile-7.0</feature>
         <feature>localConnector-1.0</feature>
     </featureManager>
 
-    <httpEndpoint id="defaultHttpEndpoint" httpPort="9081" httpsPort="9444"/>
+    <httpEndpoint httpPort="9081" httpsPort="9444" id="defaultHttpEndpoint"/>
 
-    <!-- H2 for arquillian integration tests -->
+    <!-- for arquillian tests -->
     <dataSource id="h2test" jndiName="jdbc/h2"> <!-- must start with jdbc/ -->
         <jdbcDriver libraryRef="H2Lib"/>
-        <properties URL="jdbc:h2:mem:testdb" user="sa" password=""/>
+        <properties URL="jdbc:h2:mem:testdb" password="" user="sa"/>
     </dataSource>
-
     <library id="H2Lib">
         <file name="lib/global/h2.jar"/>
     </library>
 
-</server>
+    <!-- for running in dev mode -->
+    <dataSource id="DefaultDataSource" jndiName="jdbc/MySQL">
+        <jdbcDriver libraryRef="MySQLLib"/>
+        <properties serverName="localhost" portNumber="3306" databaseName="hrm"
+                    user="root" password="root"/>
+    </dataSource>
 
+    <!-- MySQL driver JAR -->
+    <library id="MySQLLib">
+        <file name="lib/global/mysql-connector-java.jar"/>
+    </library>
+
+</server>

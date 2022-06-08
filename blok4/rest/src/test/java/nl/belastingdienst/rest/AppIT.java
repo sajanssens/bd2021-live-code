@@ -21,9 +21,8 @@ import static javax.ws.rs.client.Entity.entity;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.junit.Assert.assertEquals;
 
-// Testserver klaarzetten met `mvn liberty:create`
-// Daarna zijn de tests te runnen vanuit IDEA.
-// Alles gebeurt sowieso in één keer via `mvn verify`
+// Testserver klaarzetten met `mvn liberty:create`,
+// daarna zijn de tests te runnen vanuit IDEA.
 
 @RunWith(Arquillian.class) // 1: dit is een arquillian test
 public class AppIT {

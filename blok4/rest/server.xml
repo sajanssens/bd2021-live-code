@@ -22,7 +22,8 @@
     <!-- MySQL definition -->
     <dataSource id="DefaultDataSource" jndiName="jdbc/MySQL">
         <jdbcDriver libraryRef="MySQLLib"/>
-        <properties databaseName="hrm" serverName="${mysql.host}" portNumber="3306" user="root" password="root"/>
+        <properties serverName="${mysql.host}" portNumber="3306" databaseName="hrm"
+                    user="root" password="root"/>
     </dataSource>
 
     <!-- MySQL driver JAR -->
