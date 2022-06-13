@@ -4,6 +4,9 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application; // javax.ws.rs == JAX-RS == REST
                                      // javax.ws    == SOAP
 
+// Run:
+// - as dev with `mvn liberty:dev`
+// - as user with docker (see README.md)
 @ApplicationPath("/api")
 public class App extends Application {
 
